@@ -5,30 +5,16 @@ import { cn } from '../../lib/utils';
 export type AccordionVariant = 'default' | 'borderless' | 'grouped' | 'cards';
 
 const VariantCtx = React.createContext<AccordionVariant>('default');
+const HasIconCtx = React.createContext<boolean>(false);
 
-// Chevron icon
 function Chevron({ className }: { className?: string }) {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d="M4 6L8 10L12 6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={className} aria-hidden="true">
+      <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }
 
-// Root
 type AccordionRootProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> & {
   variant?: AccordionVariant;
 };
@@ -37,7 +23,7 @@ const Accordion = ({ variant = 'default', className, ...props }: AccordionRootPr
   <VariantCtx.Provider value={variant}>
     <AccordionPrimitive.Root
       className={cn(
-        variant === 'grouped' && 'border border-[#2A2A2A] rounded-lg overflow-hidden',
+        variant === 'grouped' && 'border border-[#2A2A2A] rounded-md overflow-hidden',
         className
       )}
       {...props}
@@ -46,7 +32,6 @@ const Accordion = ({ variant = 'default', className, ...props }: AccordionRootPr
 );
 Accordion.displayName = 'Accordion';
 
-// Item
 interface AccordionItemProps extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> {
   icon?: React.ReactNode;
 }
@@ -56,25 +41,26 @@ const AccordionItem = React.forwardRef<
   AccordionItemProps
 >(({ className, icon, ...props }, ref) => {
   const variant = React.useContext(VariantCtx);
+  const hasIcon = !!icon;
   return (
-    <AccordionPrimitive.Item
-      ref={ref}
-      data-icon={icon ? 'true' : undefined}
-      className={cn(
-        variant === 'default' && 'border-b border-[#2A2A2A] last:border-0',
-        variant === 'borderless' && '',
-        variant === 'grouped' && 'border-b border-[#2A2A2A] last:border-0',
-        variant === 'cards' && 'border border-[#2A2A2A] rounded-xl mb-3 last:mb-0',
-        props.disabled && 'opacity-40 pointer-events-none',
-        className
-      )}
-      {...props}
-    />
+    <HasIconCtx.Provider value={hasIcon}>
+      <AccordionPrimitive.Item
+        ref={ref}
+        className={cn(
+          variant === 'default' && 'border-b border-[#2A2A2A] last:border-0',
+          variant === 'borderless' && '',
+          variant === 'grouped' && 'border-b border-[#2A2A2A] last:border-0',
+          variant === 'cards' && 'border border-[#2A2A2A] rounded-md mb-3 last:mb-0',
+          props.disabled && 'opacity-40 pointer-events-none',
+          className
+        )}
+        {...props}
+      />
+    </HasIconCtx.Provider>
   );
 });
 AccordionItem.displayName = 'AccordionItem';
 
-// Trigger
 interface AccordionTriggerProps extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
   icon?: React.ReactNode;
 }
@@ -89,7 +75,8 @@ const AccordionTrigger = React.forwardRef<
       className={cn(
         'flex flex-1 items-center justify-between gap-2 px-4 py-4',
         'font-mono text-sm font-medium text-white',
-        'transition-colors duration-150 hover:text-[#A0A0A0]',
+        'transition-all duration-150',
+        'hover:underline underline-offset-4',
         'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#0071FC]',
         '[&[data-state=open]>svg:last-child]:rotate-180',
         className
@@ -97,7 +84,7 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {icon && (
-        <span className="flex items-center justify-center text-[#A0A0A0] shrink-0">
+        <span className="flex items-center justify-center text-[#A0A0A0] shrink-0 w-4">
           {icon}
         </span>
       )}
@@ -108,21 +95,27 @@ const AccordionTrigger = React.forwardRef<
 ));
 AccordionTrigger.displayName = 'AccordionTrigger';
 
-// Panel
 const AccordionPanel = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up"
-    {...props}
-  >
-    <div className={cn('px-4 pb-4 font-mono text-xs font-medium text-[#A0A0A0] leading-5', className)}>
-      {children}
-    </div>
-  </AccordionPrimitive.Content>
-));
+>(({ className, children, ...props }, ref) => {
+  const hasIcon = React.useContext(HasIconCtx);
+  return (
+    <AccordionPrimitive.Content
+      ref={ref}
+      className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up"
+      {...props}
+    >
+      <div className={cn(
+        'px-4 pb-4 font-mono text-xs font-medium text-[#A0A0A0] leading-5',
+        hasIcon && 'pl-[40px]',
+        className
+      )}>
+        {children}
+      </div>
+    </AccordionPrimitive.Content>
+  );
+});
 AccordionPanel.displayName = 'AccordionPanel';
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionPanel };

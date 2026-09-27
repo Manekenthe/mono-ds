@@ -2,22 +2,37 @@ import * as React from 'react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionPanel } from '../ui/Accordion';
 
 const defaultItems = [
-  {
-    value: 'item-1',
-    question: 'How does the subscription work?',
-    answer: 'Plans renew automatically monthly. You can cancel anytime in settings.',
-  },
-  {
-    value: 'item-2',
-    question: 'What payment methods are supported?',
-    answer: 'We accept Visa, Mastercard, PayPal and bank transfers.',
-  },
-  {
-    value: 'item-3',
-    question: 'Where can I find my invoices?',
-    answer: 'All invoices are available under Settings > Billing > Invoice history.',
-  },
+  { value: 'item-1', question: 'How does the subscription work?', answer: 'Plans renew automatically monthly. You can cancel anytime in settings.' },
+  { value: 'item-2', question: 'What payment methods are supported?', answer: 'We accept Visa, Mastercard, PayPal and bank transfers.' },
+  { value: 'item-3', question: 'Where can I find my invoices?', answer: 'All invoices are available under Settings > Billing > Invoice history.' },
 ];
+
+// Carbon Design System icons - 16x16
+function IconTwoFactor() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16 2L4 7v9c0 7.1 5.1 13.7 12 15.4C22.9 29.7 28 23.1 28 16V7L16 2zm0 2.3l10 4.5V16c0 6-4.2 11.6-10 13.4C10.2 27.6 6 22 6 16V8.8l10-4.5z"/>
+      <path d="M15 17.6l-3.3-3.3-1.4 1.4L15 20.4l6.7-6.7-1.4-1.4z"/>
+    </svg>
+  );
+}
+
+function IconPassword() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M11 16a5 5 0 1 1 5 5 5 5 0 0 1-5-5zm5-3a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/>
+      <path d="M21.7 10.3A9 9 0 0 0 7 16H2v2h5v-2a7 7 0 0 1 13.7-1.9L28 7.4V5l-6.3 5.3z"/>
+    </svg>
+  );
+}
+
+function IconDevices() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M28 6H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10v2H8v2h10v-2h-2v-2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 16H4V8h24z"/>
+    </svg>
+  );
+}
 
 // 1. Single
 export function AccordionDefault() {
@@ -34,35 +49,9 @@ export function AccordionDefault() {
 }
 
 // 2. With Icon
-function IconLock() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <rect x="3" y="7" width="10" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function IconKey() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <circle cx="6" cy="7" r="3.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M8.5 9.5l5 5M11 12l1.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function IconDevices() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <rect x="1" y="3" width="10" height="7" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M4 13h5M6.5 10v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <rect x="12" y="7" width="3" height="5" rx="0.5" stroke="currentColor" strokeWidth="1.5"/>
-    </svg>
-  );
-}
-
 const iconItems = [
-  { value: 'icon-1', icon: <IconLock />, question: 'Two-factor authentication', answer: 'Enable 2FA to add an extra layer of security to your account.' },
-  { value: 'icon-2', icon: <IconKey />, question: 'Password and security settings', answer: 'Update your password and manage login sessions.' },
+  { value: 'icon-1', icon: <IconTwoFactor />, question: 'Two-factor authentication', answer: 'Enable 2FA to add an extra layer of security to your account.' },
+  { value: 'icon-2', icon: <IconPassword />, question: 'Password and security settings', answer: 'Update your password and manage login sessions.' },
   { value: 'icon-3', icon: <IconDevices />, question: 'Connected devices and active sessions', answer: 'View and revoke access from any device connected to your account.' },
 ];
 
@@ -70,7 +59,7 @@ export function AccordionWithIcon() {
   return (
     <Accordion type="single" collapsible variant="default" className="w-full">
       {iconItems.map((item) => (
-        <AccordionItem key={item.value} value={item.value}>
+        <AccordionItem key={item.value} value={item.value} icon={item.icon}>
           <AccordionTrigger icon={item.icon}>{item.question}</AccordionTrigger>
           <AccordionPanel>{item.answer}</AccordionPanel>
         </AccordionItem>

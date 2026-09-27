@@ -5,48 +5,80 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
 
 <DocsLayout title="Accordion" description="Expandable sections." activeComponent="accordion">
 
-  <a href="/components" class="md:hidden inline-flex items-center gap-2 font-mono text-sm text-muted hover:text-white transition-colors duration-150 mb-6">
+  <a href="/components" class="md:hidden inline-flex items-center gap-2 font-mono text-sm text-muted hover:text-white transition-colors mb-6">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
     Components
   </a>
 
   <h1 class="font-mono text-2xl font-medium text-white mb-2">Accordion</h1>
-  <p class="font-mono text-sm text-muted mb-10">Expandable sections that reveal content one at a time.</p>
+  <p class="font-mono text-sm text-muted mb-8">Expandable sections that reveal content one at a time.</p>
 
-  <!-- Installation -->
-  <h2 class="font-mono text-base font-medium text-white mb-3">Installation</h2>
-  <pre class="p-4 border border-border rounded-md bg-neutral text-sm font-mono text-muted mb-10 overflow-x-auto">npx mono add accordion</pre>
-
-  <!-- Usage -->
-  <h2 class="font-mono text-base font-medium text-white mb-3">Usage</h2>
-  <pre class="p-5 border border-border rounded-md bg-neutral text-sm font-mono text-muted mb-10 overflow-x-auto">import {"{"} Accordion, AccordionItem, AccordionTrigger, AccordionPanel {"}"} from "@/components/ui/Accordion"</pre>
-
-  <!-- Examples -->
-  <h2 class="font-mono text-base font-medium text-white mb-8">Examples</h2>
-
-  <!-- 1. Single -->
-  <h3 class="font-mono text-sm font-medium text-white mb-1">Single</h3>
-  <p class="font-mono text-xs text-muted mb-4">Default accordion. Only one item can be open at a time.</p>
+  <!-- Default preview/code tabs -->
   <div class="flex gap-1 mb-3">
-    <button onclick="show('single','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
-    <button onclick="show('single','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+    <button onclick="show('default','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
+    <button onclick="show('default','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
   </div>
-  <div id="single-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
+  <div id="default-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
     <AccordionDefault client:load />
   </div>
-  <pre id="single-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#EF4444]">import</span> <span class="text-white">{"{"} Accordion, AccordionItem, AccordionTrigger, AccordionPanel {"}"}</span>
-  <span class="text-[#EF4444]">from</span> <span class="text-[#22C55E]">"@/components/ui/Accordion"</span>
-
-<span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="default"{">"}</span>
+  <pre id="default-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span><span class="text-[#A0A0A0]">{">"}</span>
   <span class="text-[#A0A0A0]">{"<"}AccordionItem</span> <span class="text-[#55CFFF]">value</span><span class="text-[#A0A0A0]">="item-1"{">"}</span>
     <span class="text-[#A0A0A0]">{"<"}AccordionTrigger{">"}</span><span class="text-white">Question</span><span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span>
     <span class="text-[#A0A0A0]">{"<"}AccordionPanel{">"}</span><span class="text-white">Answer</span><span class="text-[#A0A0A0]">{"<"}/AccordionPanel{">"}</span>
   <span class="text-[#A0A0A0]">{"<"}/AccordionItem{">"}</span>
 <span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
 
-  <!-- 2. With Icon -->
+  <!-- Installation -->
+  <h2 class="font-mono text-base font-medium text-white mb-3">Installation</h2>
+  <div class="border border-border rounded-md overflow-hidden mb-10">
+    <div class="flex border-b border-border">
+      <button onclick="setPkg('npx',this)" id="pkg-npx" class="px-4 py-2 text-xs font-mono font-medium text-white border-r border-border bg-surface">npx</button>
+      <button onclick="setPkg('bun',this)" id="pkg-bun" class="px-4 py-2 text-xs font-mono font-medium text-muted hover:text-white border-r border-border">bun</button>
+      <button onclick="setPkg('pnpm',this)" id="pkg-pnpm" class="px-4 py-2 text-xs font-mono font-medium text-muted hover:text-white border-r border-border">pnpm</button>
+      <button onclick="setPkg('yarn',this)" id="pkg-yarn" class="px-4 py-2 text-xs font-mono font-medium text-muted hover:text-white">yarn</button>
+    </div>
+    <div class="flex items-center justify-between px-4 py-3 bg-neutral">
+      <code id="pkg-cmd" class="font-mono text-sm text-muted">npx mono add accordion</code>
+      <button id="pkg-copy-btn" onclick="copyPkg()" class="text-muted hover:text-white transition-colors ml-4 shrink-0" aria-label="Copy">
+        <svg id="pkg-icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+        <svg id="pkg-icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" class="hidden"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Usage -->
+  <h2 class="font-mono text-base font-medium text-white mb-3">Usage</h2>
+  <div class="border border-border rounded-md bg-neutral overflow-hidden mb-3">
+    <div class="flex items-center justify-between px-4 py-2 border-b border-border">
+      <span class="font-mono text-xs text-muted">Import</span>
+      <button onclick="copyText('import { Accordion, AccordionItem, AccordionTrigger, AccordionPanel } from &quot;@/components/ui/Accordion&quot;', this)" class="text-muted hover:text-white transition-colors" aria-label="Copy">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+      </button>
+    </div>
+    <pre class="p-4 text-xs font-mono overflow-x-auto"><code><span class="text-[#EF4444]">import</span> <span class="text-white">{"{"} Accordion, AccordionItem, AccordionTrigger, AccordionPanel {"}"}</span>
+  <span class="text-[#EF4444]">from</span> <span class="text-[#22C55E]">"@/components/ui/Accordion"</span></code></pre>
+  </div>
+  <div class="border border-border rounded-md bg-neutral overflow-hidden mb-10">
+    <div class="flex items-center justify-between px-4 py-2 border-b border-border">
+      <span class="font-mono text-xs text-muted">Usage</span>
+      <button class="text-muted hover:text-white transition-colors" aria-label="Copy">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+      </button>
+    </div>
+    <pre class="p-4 text-xs font-mono overflow-x-auto"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span><span class="text-[#A0A0A0]">{">"}</span>
+  <span class="text-[#A0A0A0]">{"<"}AccordionItem</span> <span class="text-[#55CFFF]">value</span><span class="text-[#A0A0A0]">="item-1"{">"}</span>
+    <span class="text-[#A0A0A0]">{"<"}AccordionTrigger{">"}</span><span class="text-white">Question</span><span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span>
+    <span class="text-[#A0A0A0]">{"<"}AccordionPanel{">"}</span><span class="text-white">Answer</span><span class="text-[#A0A0A0]">{"<"}/AccordionPanel{">"}</span>
+  <span class="text-[#A0A0A0]">{"<"}/AccordionItem{">"}</span>
+<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
+  </div>
+
+  <!-- Examples -->
+  <h2 class="font-mono text-base font-medium text-white mb-8">Examples</h2>
+
+  <!-- With Icon -->
   <h3 class="font-mono text-sm font-medium text-white mb-1">With Icon</h3>
-  <p class="font-mono text-xs text-muted mb-4">Pass an icon node to AccordionTrigger via the icon prop.</p>
+  <p class="font-mono text-xs text-muted mb-4">Add Carbon icons to accordion triggers for visual context.</p>
   <div class="flex gap-1 mb-3">
     <button onclick="show('icon','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
     <button onclick="show('icon','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
@@ -54,13 +86,16 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
   <div id="icon-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
     <AccordionWithIcon client:load />
   </div>
-  <pre id="icon-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}AccordionTrigger</span> <span class="text-[#55CFFF]">icon</span><span class="text-[#A0A0A0]">={"{"}{"<"}IconLock /{">"}{"}"}{">"}</span>
-  <span class="text-white">Two-factor authentication</span>
-<span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span></code></pre>
+  <pre id="icon-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}AccordionItem</span> <span class="text-[#55CFFF]">value</span><span class="text-[#A0A0A0]">="item-1"</span> <span class="text-[#55CFFF]">icon</span><span class="text-[#A0A0A0]">={"{"}{"<"}IconTwoFactor /{">"}{"}"}{">"}</span>
+  <span class="text-[#A0A0A0]">{"<"}AccordionTrigger</span> <span class="text-[#55CFFF]">icon</span><span class="text-[#A0A0A0]">={"{"}{"<"}IconTwoFactor /{">"}{"}"}{">"}</span>
+    <span class="text-white">Two-factor authentication</span>
+  <span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span>
+  <span class="text-[#A0A0A0]">{"<"}AccordionPanel{">"}</span><span class="text-white">Enable 2FA...</span><span class="text-[#A0A0A0]">{"<"}/AccordionPanel{">"}</span>
+<span class="text-[#A0A0A0]">{"<"}/AccordionItem{">"}</span></code></pre>
 
-  <!-- 3. Borderless -->
+  <!-- Borderless -->
   <h3 class="font-mono text-sm font-medium text-white mb-1">Borderless</h3>
-  <p class="font-mono text-xs text-muted mb-4">No dividers between items.</p>
+  <p class="font-mono text-xs text-muted mb-4">No dividers between items for a minimal look.</p>
   <div class="flex gap-1 mb-3">
     <button onclick="show('borderless','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
     <button onclick="show('borderless','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
@@ -68,9 +103,11 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
   <div id="borderless-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
     <AccordionBorderless client:load />
   </div>
-  <pre id="borderless-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="borderless"{">"} ...</span></code></pre>
+  <pre id="borderless-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="borderless"{">"}</span>
+  <span class="text-[#A0A0A0]">...</span>
+<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
 
-  <!-- 4. Grouped -->
+  <!-- Grouped -->
   <h3 class="font-mono text-sm font-medium text-white mb-1">Grouped</h3>
   <p class="font-mono text-xs text-muted mb-4">All items wrapped in a single bordered container.</p>
   <div class="flex gap-1 mb-3">
@@ -80,11 +117,13 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
   <div id="grouped-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
     <AccordionGrouped client:load />
   </div>
-  <pre id="grouped-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="grouped"{">"} ...</span></code></pre>
+  <pre id="grouped-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="grouped"{">"}</span>
+  <span class="text-[#A0A0A0]">...</span>
+<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
 
-  <!-- 5. Cards -->
+  <!-- Cards -->
   <h3 class="font-mono text-sm font-medium text-white mb-1">Cards</h3>
-  <p class="font-mono text-xs text-muted mb-4">Each item is an individual card with its own border.</p>
+  <p class="font-mono text-xs text-muted mb-4">Each item as an individual card with its own border.</p>
   <div class="flex gap-1 mb-3">
     <button onclick="show('cards','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
     <button onclick="show('cards','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
@@ -92,9 +131,11 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
   <div id="cards-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
     <AccordionCards client:load />
   </div>
-  <pre id="cards-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="cards"{">"} ...</span></code></pre>
+  <pre id="cards-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="cards"{">"}</span>
+  <span class="text-[#A0A0A0]">...</span>
+<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
 
-  <!-- 6. Multiple -->
+  <!-- Multiple -->
   <h3 class="font-mono text-sm font-medium text-white mb-1">Multiple</h3>
   <p class="font-mono text-xs text-muted mb-4">Multiple items can be open simultaneously.</p>
   <div class="flex gap-1 mb-3">
@@ -104,7 +145,18 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
   <div id="multiple-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
     <AccordionMultiple client:load />
   </div>
-  <pre id="multiple-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="multiple"</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="default"{">"} ...</span></code></pre>
+  <pre id="multiple-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="multiple"</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="default"{">"}</span>
+  <span class="text-[#A0A0A0]">...</span>
+<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
+
+  <!-- Anatomy -->
+  <h2 class="font-mono text-base font-medium text-white mb-4">Anatomy</h2>
+  <ul class="font-mono text-xs text-muted space-y-2 mb-10 pl-4">
+    <li><span class="text-white">Accordion</span> - Root container that manages state</li>
+    <li><span class="text-white">AccordionItem</span> - Individual collapsible section</li>
+    <li><span class="text-white">AccordionTrigger</span> - Clickable header that toggles content</li>
+    <li><span class="text-white">AccordionPanel</span> - Expandable content panel</li>
+  </ul>
 
   <!-- Props -->
   <h2 class="font-mono text-base font-medium text-white mb-4">Props</h2>
@@ -112,29 +164,15 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
   <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">Accordion</h3>
   <div class="border border-border rounded-md overflow-hidden mb-6">
     <table class="w-full text-xs font-mono">
-      <thead>
-        <tr class="border-b border-border">
-          <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
-          <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
-          <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
-        </tr>
-      </thead>
+      <thead><tr class="border-b border-border">
+        <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
+        <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
+        <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
+      </tr></thead>
       <tbody>
-        <tr class="bg-surface">
-          <td class="px-4 py-3 text-accent">variant</td>
-          <td class="px-4 py-3 text-muted">'default' | 'borderless' | 'grouped' | 'cards'</td>
-          <td class="px-4 py-3 text-muted">'default'</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 text-accent">type</td>
-          <td class="px-4 py-3 text-muted">'single' | 'multiple'</td>
-          <td class="px-4 py-3 text-muted">required</td>
-        </tr>
-        <tr class="bg-surface">
-          <td class="px-4 py-3 text-accent">collapsible</td>
-          <td class="px-4 py-3 text-muted">boolean</td>
-          <td class="px-4 py-3 text-muted">false</td>
-        </tr>
+        <tr class="bg-surface"><td class="px-4 py-3 text-accent">variant</td><td class="px-4 py-3 text-muted">'default' | 'borderless' | 'grouped' | 'cards'</td><td class="px-4 py-3 text-muted">'default'</td></tr>
+        <tr><td class="px-4 py-3 text-accent">type</td><td class="px-4 py-3 text-muted">'single' | 'multiple'</td><td class="px-4 py-3 text-muted">required</td></tr>
+        <tr class="bg-surface"><td class="px-4 py-3 text-accent">collapsible</td><td class="px-4 py-3 text-muted">boolean</td><td class="px-4 py-3 text-muted">false</td></tr>
       </tbody>
     </table>
   </div>
@@ -142,29 +180,15 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
   <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">AccordionItem</h3>
   <div class="border border-border rounded-md overflow-hidden mb-10">
     <table class="w-full text-xs font-mono">
-      <thead>
-        <tr class="border-b border-border">
-          <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
-          <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
-          <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
-        </tr>
-      </thead>
+      <thead><tr class="border-b border-border">
+        <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
+        <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
+        <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
+      </tr></thead>
       <tbody>
-        <tr class="bg-surface">
-          <td class="px-4 py-3 text-accent">value</td>
-          <td class="px-4 py-3 text-muted">string</td>
-          <td class="px-4 py-3 text-muted">required</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 text-accent">icon</td>
-          <td class="px-4 py-3 text-muted">ReactNode</td>
-          <td class="px-4 py-3 text-muted">undefined</td>
-        </tr>
-        <tr class="bg-surface">
-          <td class="px-4 py-3 text-accent">disabled</td>
-          <td class="px-4 py-3 text-muted">boolean</td>
-          <td class="px-4 py-3 text-muted">false</td>
-        </tr>
+        <tr class="bg-surface"><td class="px-4 py-3 text-accent">value</td><td class="px-4 py-3 text-muted">string</td><td class="px-4 py-3 text-muted">required</td></tr>
+        <tr><td class="px-4 py-3 text-accent">icon</td><td class="px-4 py-3 text-muted">ReactNode</td><td class="px-4 py-3 text-muted">undefined</td></tr>
+        <tr class="bg-surface"><td class="px-4 py-3 text-accent">disabled</td><td class="px-4 py-3 text-muted">boolean</td><td class="px-4 py-3 text-muted">false</td></tr>
       </tbody>
     </table>
   </div>
@@ -172,12 +196,49 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
 </DocsLayout>
 
 <script>
+  var pkgCmds = {
+    npx:  'npx mono add accordion',
+    bun:  'bunx mono add accordion',
+    pnpm: 'pnpm dlx mono add accordion',
+    yarn: 'yarn dlx mono add accordion'
+  };
+  var activePkg = 'npx';
+
+  function setPkg(pkg, btn) {
+    activePkg = pkg;
+    document.getElementById('pkg-cmd').textContent = pkgCmds[pkg];
+    ['npx','bun','pnpm','yarn'].forEach(function(p) {
+      var b = document.getElementById('pkg-' + p);
+      if (p === pkg) {
+        b.classList.add('text-white', 'bg-surface');
+        b.classList.remove('text-muted');
+      } else {
+        b.classList.remove('text-white', 'bg-surface');
+        b.classList.add('text-muted');
+      }
+    });
+  }
+
+  function copyPkg() {
+    navigator.clipboard.writeText(pkgCmds[activePkg]).then(function() {
+      document.getElementById('pkg-icon-copy').classList.add('hidden');
+      document.getElementById('pkg-icon-check').classList.remove('hidden');
+      setTimeout(function() {
+        document.getElementById('pkg-icon-copy').classList.remove('hidden');
+        document.getElementById('pkg-icon-check').classList.add('hidden');
+      }, 2000);
+    });
+  }
+
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text);
+  }
+
   function show(section, tab, btn) {
     var preview = document.getElementById(section + '-preview');
     var code = document.getElementById(section + '-code');
     var parent = btn.parentElement;
-    var buttons = parent.querySelectorAll('button');
-    buttons.forEach(function(b) {
+    parent.querySelectorAll('button').forEach(function(b) {
       b.classList.remove('bg-secondary', 'text-white');
       b.classList.add('text-muted');
     });
@@ -191,5 +252,9 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
       code.classList.remove('hidden');
     }
   }
+
+  window.setPkg = setPkg;
+  window.copyPkg = copyPkg;
+  window.copyText = copyText;
   window.show = show;
 </script>
