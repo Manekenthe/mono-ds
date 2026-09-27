@@ -1,0 +1,23 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+const { slug } = Astro.params;
+const name = slug ? slug.charAt(0).toUpperCase() + slug.slice(1) : '';
+
+export function getStaticPaths() {
+  const components = [
+    'alert','avatar','badge','breadcrumb','button','card',
+    'checkbox','dialog','input','select','slider','switch',
+    'tabs','toast','tooltip'
+  ];
+  return components.map((s) => ({ params: { slug: s } }));
+}
+---
+
+<DocsLayout title={name} activeComponent={slug}>
+  <h1 class="font-mono text-2xl font-medium text-white mb-2">{name}</h1>
+  <p class="font-mono text-sm text-muted mb-10">This component is coming soon.</p>
+  <div class="p-8 border border-border rounded-md bg-surface flex items-center justify-center">
+    <p class="font-mono text-sm text-muted">Work in progress</p>
+  </div>
+</DocsLayout>

@@ -1,0 +1,50 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+const components = [
+  { name: 'Accordion', desc: 'Expandable sections that reveal content.', ready: true },
+  { name: 'Alert', desc: 'Contextual feedback messages.', ready: false },
+  { name: 'Avatar', desc: 'User profile image or initials.', ready: false },
+  { name: 'Badge', desc: 'Status and label indicators.', ready: false },
+  { name: 'Breadcrumb', desc: 'Hierarchical navigation path.', ready: false },
+  { name: 'Button', desc: 'Triggers actions and events.', ready: false },
+  { name: 'Card', desc: 'Container for grouped content.', ready: false },
+  { name: 'Checkbox', desc: 'Binary selection control.', ready: false },
+  { name: 'Dialog', desc: 'Modal overlay for focused tasks.', ready: false },
+  { name: 'Input', desc: 'Text entry field.', ready: false },
+  { name: 'Select', desc: 'Dropdown option picker.', ready: false },
+  { name: 'Slider', desc: 'Range value selector.', ready: false },
+  { name: 'Switch', desc: 'Toggle between two states.', ready: false },
+  { name: 'Tabs', desc: 'Switch between content panels.', ready: false },
+  { name: 'Toast', desc: 'Temporary notification messages.', ready: false },
+  { name: 'Tooltip', desc: 'Contextual label on hover.', ready: false },
+];
+---
+
+<DocsLayout title="Components" description="All Mono DS components">
+  <h1 class="font-mono text-2xl font-medium text-white mb-2">Components</h1>
+  <p class="font-mono text-sm text-muted mb-8">
+    Accessible, composable components built for React and Tailwind CSS.
+  </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    {components.map((c) => (
+      c.ready ? (
+        <a
+          href={`/components/${c.name.toLowerCase()}`}
+          class="group p-4 border border-border rounded-md bg-surface hover:border-muted transition-all duration-150"
+        >
+          <p class="font-mono text-sm font-medium text-white mb-1">{c.name}</p>
+          <p class="font-mono text-xs text-muted">{c.desc}</p>
+        </a>
+      ) : (
+        <div class="p-4 border border-border rounded-md bg-surface opacity-40 cursor-not-allowed">
+          <div class="flex items-center justify-between mb-1">
+            <p class="font-mono text-sm font-medium text-white">{c.name}</p>
+            <span class="font-mono text-xs text-muted">soon</span>
+          </div>
+          <p class="font-mono text-xs text-muted">{c.desc}</p>
+        </div>
+      )
+    ))}
+  </div>
+</DocsLayout>

@@ -1,0 +1,195 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrouped, AccordionCards, AccordionMultiple } from '../../components/docs/AccordionPreview';
+---
+
+<DocsLayout title="Accordion" description="Expandable sections." activeComponent="accordion">
+
+  <a href="/components" class="md:hidden inline-flex items-center gap-2 font-mono text-sm text-muted hover:text-white transition-colors duration-150 mb-6">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    Components
+  </a>
+
+  <h1 class="font-mono text-2xl font-medium text-white mb-2">Accordion</h1>
+  <p class="font-mono text-sm text-muted mb-10">Expandable sections that reveal content one at a time.</p>
+
+  <!-- Installation -->
+  <h2 class="font-mono text-base font-medium text-white mb-3">Installation</h2>
+  <pre class="p-4 border border-border rounded-md bg-neutral text-sm font-mono text-muted mb-10 overflow-x-auto">npx mono add accordion</pre>
+
+  <!-- Usage -->
+  <h2 class="font-mono text-base font-medium text-white mb-3">Usage</h2>
+  <pre class="p-5 border border-border rounded-md bg-neutral text-sm font-mono text-muted mb-10 overflow-x-auto">import {"{"} Accordion, AccordionItem, AccordionTrigger, AccordionPanel {"}"} from "@/components/ui/Accordion"</pre>
+
+  <!-- Examples -->
+  <h2 class="font-mono text-base font-medium text-white mb-8">Examples</h2>
+
+  <!-- 1. Single -->
+  <h3 class="font-mono text-sm font-medium text-white mb-1">Single</h3>
+  <p class="font-mono text-xs text-muted mb-4">Default accordion. Only one item can be open at a time.</p>
+  <div class="flex gap-1 mb-3">
+    <button onclick="show('single','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
+    <button onclick="show('single','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+  </div>
+  <div id="single-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
+    <AccordionDefault client:load />
+  </div>
+  <pre id="single-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#EF4444]">import</span> <span class="text-white">{"{"} Accordion, AccordionItem, AccordionTrigger, AccordionPanel {"}"}</span>
+  <span class="text-[#EF4444]">from</span> <span class="text-[#22C55E]">"@/components/ui/Accordion"</span>
+
+<span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="default"{">"}</span>
+  <span class="text-[#A0A0A0]">{"<"}AccordionItem</span> <span class="text-[#55CFFF]">value</span><span class="text-[#A0A0A0]">="item-1"{">"}</span>
+    <span class="text-[#A0A0A0]">{"<"}AccordionTrigger{">"}</span><span class="text-white">Question</span><span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span>
+    <span class="text-[#A0A0A0]">{"<"}AccordionPanel{">"}</span><span class="text-white">Answer</span><span class="text-[#A0A0A0]">{"<"}/AccordionPanel{">"}</span>
+  <span class="text-[#A0A0A0]">{"<"}/AccordionItem{">"}</span>
+<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
+
+  <!-- 2. With Icon -->
+  <h3 class="font-mono text-sm font-medium text-white mb-1">With Icon</h3>
+  <p class="font-mono text-xs text-muted mb-4">Pass an icon node to AccordionTrigger via the icon prop.</p>
+  <div class="flex gap-1 mb-3">
+    <button onclick="show('icon','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
+    <button onclick="show('icon','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+  </div>
+  <div id="icon-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
+    <AccordionWithIcon client:load />
+  </div>
+  <pre id="icon-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}AccordionTrigger</span> <span class="text-[#55CFFF]">icon</span><span class="text-[#A0A0A0]">={"{"}{"<"}IconLock /{">"}{"}"}{">"}</span>
+  <span class="text-white">Two-factor authentication</span>
+<span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span></code></pre>
+
+  <!-- 3. Borderless -->
+  <h3 class="font-mono text-sm font-medium text-white mb-1">Borderless</h3>
+  <p class="font-mono text-xs text-muted mb-4">No dividers between items.</p>
+  <div class="flex gap-1 mb-3">
+    <button onclick="show('borderless','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
+    <button onclick="show('borderless','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+  </div>
+  <div id="borderless-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
+    <AccordionBorderless client:load />
+  </div>
+  <pre id="borderless-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="borderless"{">"} ...</span></code></pre>
+
+  <!-- 4. Grouped -->
+  <h3 class="font-mono text-sm font-medium text-white mb-1">Grouped</h3>
+  <p class="font-mono text-xs text-muted mb-4">All items wrapped in a single bordered container.</p>
+  <div class="flex gap-1 mb-3">
+    <button onclick="show('grouped','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
+    <button onclick="show('grouped','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+  </div>
+  <div id="grouped-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
+    <AccordionGrouped client:load />
+  </div>
+  <pre id="grouped-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="grouped"{">"} ...</span></code></pre>
+
+  <!-- 5. Cards -->
+  <h3 class="font-mono text-sm font-medium text-white mb-1">Cards</h3>
+  <p class="font-mono text-xs text-muted mb-4">Each item is an individual card with its own border.</p>
+  <div class="flex gap-1 mb-3">
+    <button onclick="show('cards','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
+    <button onclick="show('cards','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+  </div>
+  <div id="cards-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
+    <AccordionCards client:load />
+  </div>
+  <pre id="cards-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="cards"{">"} ...</span></code></pre>
+
+  <!-- 6. Multiple -->
+  <h3 class="font-mono text-sm font-medium text-white mb-1">Multiple</h3>
+  <p class="font-mono text-xs text-muted mb-4">Multiple items can be open simultaneously.</p>
+  <div class="flex gap-1 mb-3">
+    <button onclick="show('multiple','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
+    <button onclick="show('multiple','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+  </div>
+  <div id="multiple-preview" class="p-8 border border-border rounded-md bg-surface mb-10">
+    <AccordionMultiple client:load />
+  </div>
+  <pre id="multiple-code" class="hidden p-5 border border-border rounded-md bg-neutral text-sm font-mono overflow-x-auto mb-10"><code class="text-muted"><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="multiple"</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="default"{">"} ...</span></code></pre>
+
+  <!-- Props -->
+  <h2 class="font-mono text-base font-medium text-white mb-4">Props</h2>
+
+  <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">Accordion</h3>
+  <div class="border border-border rounded-md overflow-hidden mb-6">
+    <table class="w-full text-xs font-mono">
+      <thead>
+        <tr class="border-b border-border">
+          <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
+          <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
+          <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-surface">
+          <td class="px-4 py-3 text-accent">variant</td>
+          <td class="px-4 py-3 text-muted">'default' | 'borderless' | 'grouped' | 'cards'</td>
+          <td class="px-4 py-3 text-muted">'default'</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 text-accent">type</td>
+          <td class="px-4 py-3 text-muted">'single' | 'multiple'</td>
+          <td class="px-4 py-3 text-muted">required</td>
+        </tr>
+        <tr class="bg-surface">
+          <td class="px-4 py-3 text-accent">collapsible</td>
+          <td class="px-4 py-3 text-muted">boolean</td>
+          <td class="px-4 py-3 text-muted">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">AccordionItem</h3>
+  <div class="border border-border rounded-md overflow-hidden mb-10">
+    <table class="w-full text-xs font-mono">
+      <thead>
+        <tr class="border-b border-border">
+          <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
+          <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
+          <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-surface">
+          <td class="px-4 py-3 text-accent">value</td>
+          <td class="px-4 py-3 text-muted">string</td>
+          <td class="px-4 py-3 text-muted">required</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 text-accent">icon</td>
+          <td class="px-4 py-3 text-muted">ReactNode</td>
+          <td class="px-4 py-3 text-muted">undefined</td>
+        </tr>
+        <tr class="bg-surface">
+          <td class="px-4 py-3 text-accent">disabled</td>
+          <td class="px-4 py-3 text-muted">boolean</td>
+          <td class="px-4 py-3 text-muted">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</DocsLayout>
+
+<script>
+  function show(section, tab, btn) {
+    var preview = document.getElementById(section + '-preview');
+    var code = document.getElementById(section + '-code');
+    var parent = btn.parentElement;
+    var buttons = parent.querySelectorAll('button');
+    buttons.forEach(function(b) {
+      b.classList.remove('bg-secondary', 'text-white');
+      b.classList.add('text-muted');
+    });
+    btn.classList.add('bg-secondary', 'text-white');
+    btn.classList.remove('text-muted');
+    if (tab === 'preview') {
+      preview.classList.remove('hidden');
+      code.classList.add('hidden');
+    } else {
+      preview.classList.add('hidden');
+      code.classList.remove('hidden');
+    }
+  }
+  window.show = show;
+</script>
