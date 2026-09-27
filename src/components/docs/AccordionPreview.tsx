@@ -7,7 +7,7 @@ const defaultItems = [
   { value: 'item-3', question: 'Where can I find my invoices?', answer: 'All invoices are available under Settings > Billing > Invoice history.' },
 ];
 
-// Carbon Design System icons - 16x16
+// Carbon Design System icons 16x16
 function IconTwoFactor() {
   return (
     <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
@@ -16,7 +16,6 @@ function IconTwoFactor() {
     </svg>
   );
 }
-
 function IconPassword() {
   return (
     <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
@@ -25,7 +24,6 @@ function IconPassword() {
     </svg>
   );
 }
-
 function IconDevices() {
   return (
     <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
@@ -48,7 +46,7 @@ export function AccordionDefault() {
   );
 }
 
-// 2. With Icon
+// 2. With Icon - icon only on AccordionTrigger
 const iconItems = [
   { value: 'icon-1', icon: <IconTwoFactor />, question: 'Two-factor authentication', answer: 'Enable 2FA to add an extra layer of security to your account.' },
   { value: 'icon-2', icon: <IconPassword />, question: 'Password and security settings', answer: 'Update your password and manage login sessions.' },
@@ -59,7 +57,7 @@ export function AccordionWithIcon() {
   return (
     <Accordion type="single" collapsible variant="default" className="w-full">
       {iconItems.map((item) => (
-        <AccordionItem key={item.value} value={item.value} icon={item.icon}>
+        <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger icon={item.icon}>{item.question}</AccordionTrigger>
           <AccordionPanel>{item.answer}</AccordionPanel>
         </AccordionItem>

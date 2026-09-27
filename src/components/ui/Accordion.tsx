@@ -32,31 +32,23 @@ const Accordion = ({ variant = 'default', className, ...props }: AccordionRootPr
 );
 Accordion.displayName = 'Accordion';
 
-interface AccordionItemProps extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> {
-  icon?: React.ReactNode;
-}
-
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  AccordionItemProps
->(({ className, icon, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+>(({ className, ...props }, ref) => {
   const variant = React.useContext(VariantCtx);
-  const hasIcon = !!icon;
   return (
-    <HasIconCtx.Provider value={hasIcon}>
-      <AccordionPrimitive.Item
-        ref={ref}
-        className={cn(
-          variant === 'default' && 'border-b border-[#2A2A2A] last:border-0',
-          variant === 'borderless' && '',
-          variant === 'grouped' && 'border-b border-[#2A2A2A] last:border-0',
-          variant === 'cards' && 'border border-[#2A2A2A] rounded-md mb-3 last:mb-0',
-          props.disabled && 'opacity-40 pointer-events-none',
-          className
-        )}
-        {...props}
-      />
-    </HasIconCtx.Provider>
+    <AccordionPrimitive.Item
+      ref={ref}
+      className={cn(
+        variant === 'default' && 'border-b border-[#2A2A2A] last:border-0',
+        variant === 'grouped' && 'border-b border-[#2A2A2A] last:border-0',
+        variant === 'cards' && 'border border-[#2A2A2A] rounded-md mb-3 last:mb-0',
+        props.disabled && 'opacity-40 pointer-events-none',
+        className
+      )}
+      {...props}
+    />
   );
 });
 AccordionItem.displayName = 'AccordionItem';
@@ -69,29 +61,31 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   AccordionTriggerProps
 >(({ className, children, icon, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        'flex flex-1 items-center justify-between gap-2 px-4 py-4',
-        'font-mono text-sm font-medium text-white',
-        'transition-all duration-150',
-        'hover:underline underline-offset-4',
-        'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#0071FC]',
-        '[&[data-state=open]>svg:last-child]:rotate-180',
-        className
-      )}
-      {...props}
-    >
-      {icon && (
-        <span className="flex items-center justify-center text-[#A0A0A0] shrink-0 w-4">
-          {icon}
-        </span>
-      )}
-      <span className="flex-1 text-left">{children}</span>
-      <Chevron className="text-[#A0A0A0] shrink-0 transition-transform duration-300 ease-out" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
+  <HasIconCtx.Provider value={!!icon}>
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        ref={ref}
+        className={cn(
+          'flex flex-1 items-center justify-between gap-2 px-4 py-4',
+          'font-mono text-sm font-medium text-white',
+          'transition-all duration-150',
+          'hover:underline underline-offset-4',
+          'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#0071FC]',
+          '[&[data-state=open]>svg:last-child]:rotate-180',
+          className
+        )}
+        {...props}
+      >
+        {icon && (
+          <span className="flex items-center justify-center text-[#A0A0A0] shrink-0 w-4">
+            {icon}
+          </span>
+        )}
+        <span className="flex-1 text-left">{children}</span>
+        <Chevron className="text-[#A0A0A0] shrink-0 transition-transform duration-300 ease-out" />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  </HasIconCtx.Provider>
 ));
 AccordionTrigger.displayName = 'AccordionTrigger';
 
