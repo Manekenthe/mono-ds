@@ -1,257 +1,314 @@
 ---
 import DocsLayout from '../../layouts/DocsLayout.astro';
 import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrouped, AccordionCards, AccordionMultiple } from '../../components/docs/AccordionPreview';
+
+const sections = [
+  { id: 'installation', title: 'Installation' },
+  { id: 'usage', title: 'Usage' },
+  { id: 'examples', title: 'Examples', sub: [
+    { id: 'single', title: 'Single Accordion' },
+    { id: 'with-icon', title: 'With Icon' },
+    { id: 'borderless', title: 'Borderless' },
+    { id: 'grouped', title: 'Grouped' },
+    { id: 'cards', title: 'Cards' },
+    { id: 'multiple', title: 'Multiple' },
+  ]},
+  { id: 'anatomy', title: 'Anatomy' },
+  { id: 'props', title: 'Props' },
+];
 ---
 
-<DocsLayout title="Accordion" description="Expandable sections." activeComponent="accordion">
+<DocsLayout title="Accordion" description="Expandable sections." activeComponent="accordion" sections={sections}>
 
-  <a href="/components" class="md:hidden inline-flex items-center gap-2 font-mono text-sm text-muted hover:text-white transition-colors mb-6">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    Components
-  </a>
+  <!-- Title -->
+  <h1 class="font-mono font-medium text-white" style="font-size:20px; line-height:32px; margin-bottom:4px;">Accordion</h1>
+  <p class="font-mono text-[#A0A0A0]" style="font-size:16px; line-height:24px; font-weight:400; margin-bottom:48px;">Expandable sections that reveal content one at a time.</p>
 
-  <h1 class="font-mono text-2xl font-medium text-white mb-2">Accordion</h1>
-  <p class="font-mono text-sm text-muted mb-8">Expandable sections that reveal content one at a time.</p>
+  <!-- Default Preview/Code -->
+  <div id="single" style="margin-bottom:48px;">
+    <div class="flex" style="gap:4px; margin-bottom:0;">
+      <button onclick="show('default','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+      <button onclick="show('default','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+    </div>
+    <div id="default-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px 32px;">
+      <AccordionDefault client:load />
+    </div>
+    <pre id="default-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#EF4444;">import</span> <span style="color:#FFFFFF;">{"{"}</span>
+  <span style="color:#FFFFFF;">Accordion,</span>
+  <span style="color:#FFFFFF;">AccordionItem,</span>
+  <span style="color:#FFFFFF;">AccordionPanel,</span>
+  <span style="color:#FFFFFF;">AccordionTrigger,</span>
+<span style="color:#FFFFFF;">{"}"}</span> <span style="color:#EF4444;">from</span> <span style="color:#22C55E;">"@/components/ui/accordion"</span>
 
-  <!-- Default preview/code tabs -->
-  <div class="flex gap-1 mb-3">
-    <button onclick="show('default','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
-    <button onclick="show('default','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
+<span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"single"</span> <span style="color:#6F42C1;">collapsible</span><span style="color:#55CFFF;">{">"}</span>
+  <span style="color:#55CFFF;">{"<"}AccordionItem</span> <span style="color:#6F42C1;">value</span><span style="color:#FFFFFF;">="item-1"</span><span style="color:#55CFFF;">{">"}</span>
+    <span style="color:#55CFFF;">{"<"}AccordionTrigger</span><span style="color:#55CFFF;">{">"}</span><span style="color:#FFFFFF;">Question</span><span style="color:#55CFFF;">{"<"}/AccordionTrigger{">"}</span>
+    <span style="color:#55CFFF;">{"<"}AccordionPanel</span><span style="color:#55CFFF;">{">"}</span><span style="color:#FFFFFF;">Answer</span><span style="color:#55CFFF;">{"<"}/AccordionPanel{">"}</span>
+  <span style="color:#55CFFF;">{"<"}/AccordionItem{">"}</span>
+<span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
   </div>
-  <div id="default-preview" class="p-8 border border-border rounded-md bg-[#0E0E0E] mb-10">
-    <AccordionDefault client:load />
-  </div>
-  <pre id="default-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span><span class="text-[#A0A0A0]">{">"}</span>
-  <span class="text-[#A0A0A0]">{"<"}AccordionItem</span> <span class="text-[#55CFFF]">value</span><span class="text-[#A0A0A0]">="item-1"{">"}</span>
-    <span class="text-[#A0A0A0]">{"<"}AccordionTrigger{">"}</span><span class="text-white">Question</span><span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span>
-    <span class="text-[#A0A0A0]">{"<"}AccordionPanel{">"}</span><span class="text-white">Answer</span><span class="text-[#A0A0A0]">{"<"}/AccordionPanel{">"}</span>
-  <span class="text-[#A0A0A0]">{"<"}/AccordionItem{">"}</span>
-<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
 
   <!-- Installation -->
-  <h2 class="font-mono text-base font-medium text-white mb-3">Installation</h2>
-  <div class="border border-border rounded-md overflow-hidden mb-10">
-    <div class="flex border-b border-border">
-      <button onclick="setPkg('npx',this)" id="pkg-npx" class="px-4 py-2 text-xs font-mono font-medium text-white border-r border-border bg-surface">npx</button>
-      <button onclick="setPkg('bun',this)" id="pkg-bun" class="px-4 py-2 text-xs font-mono font-medium text-muted hover:text-white border-r border-border">bun</button>
-      <button onclick="setPkg('pnpm',this)" id="pkg-pnpm" class="px-4 py-2 text-xs font-mono font-medium text-muted hover:text-white border-r border-border">pnpm</button>
-      <button onclick="setPkg('yarn',this)" id="pkg-yarn" class="px-4 py-2 text-xs font-mono font-medium text-muted hover:text-white">yarn</button>
+  <section id="installation" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Installation</h2>
+    <div class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; overflow:hidden;">
+      <!-- Package tabs row -->
+      <div class="flex items-center border-b border-[#2A2A2A]" style="padding:0 16px; gap:4px;">
+        <!-- Terminal icon -->
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="#A0A0A0" style="margin-right:8px; flex-shrink:0;">
+          <path d="M6 22l8-6-8-6v12zM14 22h12v2H14z"/>
+        </svg>
+        <button onclick="setPkg('npx',this)" id="pkg-npx" class="pkg-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">npx</button>
+        <button onclick="setPkg('bun',this)" id="pkg-bun" class="pkg-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer; border-radius:8px;">bun</button>
+        <button onclick="setPkg('pnpm',this)" id="pkg-pnpm" class="pkg-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">pnpm</button>
+        <button onclick="setPkg('yarn',this)" id="pkg-yarn" class="pkg-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">yarn</button>
+        <div class="ml-auto">
+          <button onclick="copyPkg()" class="text-[#A0A0A0] hover:text-white transition-colors" aria-label="Copy">
+            <!-- Carbon: Copy -->
+            <svg id="pkg-icon-copy" width="16" height="16" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M28 10H22V4H6V28H12v2H4V2H24L30 8V24H28ZM24 5.41L26.59 8H24ZM18 12H30V30H18ZM28 28V14H20V28Z"/>
+            </svg>
+            <svg id="pkg-icon-check" width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" class="hidden">
+              <path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Command -->
+      <div class="flex items-center" style="padding:12px 16px;">
+        <span class="font-mono" style="color:#A0A0A0; font-size:14px; margin-right:16px; user-select:none;">1</span>
+        <code id="pkg-cmd" class="font-mono" style="font-size:14px; line-height:20px;"><span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add accordion</span></code>
+      </div>
     </div>
-    <div class="flex items-center justify-between px-4 py-3 bg-neutral">
-      <code id="pkg-cmd" class="font-mono text-sm text-muted">npx mono add accordion</code>
-      <button id="pkg-copy-btn" onclick="copyPkg()" class="text-muted hover:text-white transition-colors ml-4 shrink-0" aria-label="Copy">
-        <svg id="pkg-icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
-        <svg id="pkg-icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" class="hidden"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      </button>
-    </div>
-  </div>
+  </section>
 
   <!-- Usage -->
-  <h2 class="font-mono text-base font-medium text-white mb-3">Usage</h2>
-  <div class="border border-border rounded-md bg-neutral overflow-hidden mb-3">
-    <div class="flex items-center justify-between px-4 py-2 border-b border-border">
-      <span class="font-mono text-xs text-muted">Import</span>
-      <button onclick="copyText('import { Accordion, AccordionItem, AccordionTrigger, AccordionPanel } from &quot;@/components/ui/Accordion&quot;', this)" class="text-muted hover:text-white transition-colors" aria-label="Copy">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
-      </button>
+  <section id="usage" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Usage</h2>
+    <!-- Import block -->
+    <div class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; overflow:hidden; margin-bottom:8px;">
+      <div class="flex items-center justify-end border-b border-[#2A2A2A]" style="padding:8px 16px;">
+        <button class="text-[#A0A0A0] hover:text-white transition-colors" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28 10H22V4H6V28H12v2H4V2H24L30 8V24H28ZM24 5.41L26.59 8H24ZM18 12H30V30H18ZM28 28V14H20V28Z"/></svg>
+        </button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#A0A0A0; user-select:none; margin-right:16px;">1</span><span style="color:#EF4444;">import</span> <span style="color:#FFFFFF;">{"{"}</span>
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">2</span>  <span style="color:#FFFFFF;">Accordion,</span>
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">3</span>  <span style="color:#FFFFFF;">AccordionItem,</span>
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">4</span>  <span style="color:#FFFFFF;">AccordionPanel,</span>
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">5</span>  <span style="color:#FFFFFF;">AccordionTrigger,</span>
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">6</span><span style="color:#FFFFFF;">{"}"}</span> <span style="color:#EF4444;">from</span> <span style="color:#22C55E;">"@/components/ui/accordion"</span></code></pre>
     </div>
-    <pre class="p-4 text-xs font-mono overflow-x-auto"><code><span class="text-[#EF4444]">import</span> <span class="text-white">{"{"} Accordion, AccordionItem, AccordionTrigger, AccordionPanel {"}"} <span class="text-[#EF4444]">from</span> <span class="text-[#22C55E]">"@/components/ui/Accordion"</span></span></code></pre>
-  </div>
-  <div class="border border-border rounded-md bg-neutral overflow-hidden mb-10">
-    <div class="flex items-center justify-between px-4 py-2 border-b border-border">
-      <span class="font-mono text-xs text-muted">Usage</span>
-      <button class="text-muted hover:text-white transition-colors" aria-label="Copy">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
-      </button>
+    <!-- Usage block -->
+    <div class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; overflow:hidden;">
+      <div class="flex items-center justify-end border-b border-[#2A2A2A]" style="padding:8px 16px;">
+        <button class="text-[#A0A0A0] hover:text-white transition-colors" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28 10H22V4H6V28H12v2H4V2H24L30 8V24H28ZM24 5.41L26.59 8H24ZM18 12H30V30H18ZM28 28V14H20V28Z"/></svg>
+        </button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span><span style="color:#FFFFFF;">{">"}</span>
+  <span style="color:#55CFFF;">{"<"}AccordionItem</span> <span style="color:#6F42C1;">value</span><span style="color:#FFFFFF;">="item-1"</span><span style="color:#55CFFF;">{">"}</span>
+    <span style="color:#55CFFF;">{"<"}AccordionTrigger</span><span style="color:#55CFFF;">{">"}</span><span style="color:#FFFFFF;">Is it accessible?</span><span style="color:#55CFFF;">{"<"}/AccordionTrigger{">"}</span>
+    <span style="color:#55CFFF;">{"<"}AccordionPanel</span><span style="color:#55CFFF;">{">"}</span>
+      <span style="color:#FFFFFF;">Yes. It adheres to the WAI-ARIA design pattern.</span>
+    <span style="color:#55CFFF;">{"<"}/AccordionPanel{">"}</span>
+  <span style="color:#55CFFF;">{"<"}/AccordionItem{">"}</span>
+<span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
     </div>
-    <pre class="p-4 text-xs font-mono overflow-x-auto"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span><span class="text-[#A0A0A0]">{">"}</span>
-  <span class="text-[#A0A0A0]">{"<"}AccordionItem</span> <span class="text-[#55CFFF]">value</span><span class="text-[#A0A0A0]">="item-1"{">"}</span>
-    <span class="text-[#A0A0A0]">{"<"}AccordionTrigger{">"}</span><span class="text-white">Question</span><span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span>
-    <span class="text-[#A0A0A0]">{"<"}AccordionPanel{">"}</span><span class="text-white">Answer</span><span class="text-[#A0A0A0]">{"<"}/AccordionPanel{">"}</span>
-  <span class="text-[#A0A0A0]">{"<"}/AccordionItem{">"}</span>
-<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
-  </div>
+  </section>
 
   <!-- Examples -->
-  <h2 class="font-mono text-base font-medium text-white mb-8">Examples</h2>
+  <section id="examples" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:32px;">Examples</h2>
 
-  <!-- With Icon -->
-  <h3 class="font-mono text-sm font-medium text-white mb-1">With Icon</h3>
-  <p class="font-mono text-xs text-muted mb-4">Add Carbon icons to accordion triggers for visual context.</p>
-  <div class="flex gap-1 mb-3">
-    <button onclick="show('icon','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
-    <button onclick="show('icon','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
-  </div>
-  <div id="icon-preview" class="p-8 border border-border rounded-md bg-[#0E0E0E] mb-10">
-    <AccordionWithIcon client:load />
-  </div>
-  <pre id="icon-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}AccordionItem</span> <span class="text-[#55CFFF]">value</span><span class="text-[#A0A0A0]">="item-1"{">"}</span>
-  <span class="text-[#A0A0A0]">{"<"}AccordionTrigger</span> <span class="text-[#55CFFF]">icon</span><span class="text-[#A0A0A0]">={"{"}{"<"}IconTwoFactor /{">"}{"}"}{">"}</span>
-    <span class="text-white">Two-factor authentication</span>
-  <span class="text-[#A0A0A0]">{"<"}/AccordionTrigger{">"}</span>
-  <span class="text-[#A0A0A0]">{"<"}AccordionPanel{">"}</span><span class="text-white">Enable 2FA...</span><span class="text-[#A0A0A0]">{"<"}/AccordionPanel{">"}</span>
-<span class="text-[#A0A0A0]">{"<"}/AccordionItem{">"}</span></code></pre>
+    <!-- With Icon -->
+    <div id="with-icon" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Icon</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Add Carbon icons to accordion triggers for visual context.</p>
+      <div class="flex" style="gap:4px; margin-bottom:0;">
+        <button onclick="show('icon','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      </div>
+      <div id="icon-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+        <AccordionWithIcon client:load />
+      </div>
+      <pre id="icon-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}AccordionItem</span> <span style="color:#6F42C1;">value</span><span style="color:#FFFFFF;">="item-1"</span><span style="color:#55CFFF;">{">"}</span>
+  <span style="color:#55CFFF;">{"<"}AccordionTrigger</span> <span style="color:#6F42C1;">icon</span><span style="color:#FFFFFF;">={"{"}{"<"}IconTwoFactor /{">"}{"}"}{">"}</span>
+    <span style="color:#FFFFFF;">Two-factor authentication</span>
+  <span style="color:#55CFFF;">{"<"}/AccordionTrigger{">"}</span>
+  <span style="color:#55CFFF;">{"<"}AccordionPanel{">"}</span><span style="color:#FFFFFF;">Enable 2FA...</span><span style="color:#55CFFF;">{"<"}/AccordionPanel{">"}</span>
+<span style="color:#55CFFF;">{"<"}/AccordionItem{">"}</span></code></pre>
+    </div>
 
-  <!-- Borderless -->
-  <h3 class="font-mono text-sm font-medium text-white mb-1">Borderless</h3>
-  <p class="font-mono text-xs text-muted mb-4">No dividers between items for a minimal look.</p>
-  <div class="flex gap-1 mb-3">
-    <button onclick="show('borderless','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
-    <button onclick="show('borderless','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
-  </div>
-  <div id="borderless-preview" class="p-8 border border-border rounded-md bg-[#0E0E0E] mb-10">
-    <AccordionBorderless client:load />
-  </div>
-  <pre id="borderless-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="borderless"{">"}</span>
-  <span class="text-[#A0A0A0]">...</span>
-<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
+    <!-- Borderless -->
+    <div id="borderless" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Borderless</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">No dividers between items for a minimal look.</p>
+      <div class="flex" style="gap:4px;">
+        <button onclick="show('borderless','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('borderless','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      </div>
+      <div id="borderless-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+        <AccordionBorderless client:load />
+      </div>
+      <pre id="borderless-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="borderless"</span><span style="color:#55CFFF;">{">"}</span>
+  <span style="color:#FFFFFF;">...</span>
+<span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
+    </div>
 
-  <!-- Grouped -->
-  <h3 class="font-mono text-sm font-medium text-white mb-1">Grouped</h3>
-  <p class="font-mono text-xs text-muted mb-4">All items wrapped in a single bordered container.</p>
-  <div class="flex gap-1 mb-3">
-    <button onclick="show('grouped','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
-    <button onclick="show('grouped','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
-  </div>
-  <div id="grouped-preview" class="p-8 border border-border rounded-md bg-[#0E0E0E] mb-10">
-    <AccordionGrouped client:load />
-  </div>
-  <pre id="grouped-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="grouped"{">"}</span>
-  <span class="text-[#A0A0A0]">...</span>
-<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
+    <!-- Grouped -->
+    <div id="grouped" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Grouped</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">All items wrapped in a single bordered container.</p>
+      <div class="flex" style="gap:4px;">
+        <button onclick="show('grouped','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('grouped','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      </div>
+      <div id="grouped-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+        <AccordionGrouped client:load />
+      </div>
+      <pre id="grouped-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="grouped"</span><span style="color:#55CFFF;">{">"}</span>
+  <span style="color:#FFFFFF;">...</span>
+<span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
+    </div>
 
-  <!-- Cards -->
-  <h3 class="font-mono text-sm font-medium text-white mb-1">Cards</h3>
-  <p class="font-mono text-xs text-muted mb-4">Each item as an individual card with its own border.</p>
-  <div class="flex gap-1 mb-3">
-    <button onclick="show('cards','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
-    <button onclick="show('cards','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
-  </div>
-  <div id="cards-preview" class="p-8 border border-border rounded-md bg-[#0E0E0E] mb-10">
-    <AccordionCards client:load />
-  </div>
-  <pre id="cards-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="single"</span> <span class="text-[#55CFFF]">collapsible</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="cards"{">"}</span>
-  <span class="text-[#A0A0A0]">...</span>
-<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
+    <!-- Cards -->
+    <div id="cards" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Cards</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Each item as an individual card with its own border.</p>
+      <div class="flex" style="gap:4px;">
+        <button onclick="show('cards','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('cards','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      </div>
+      <div id="cards-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+        <AccordionCards client:load />
+      </div>
+      <pre id="cards-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="cards"</span><span style="color:#55CFFF;">{">"}</span>
+  <span style="color:#FFFFFF;">...</span>
+<span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
+    </div>
 
-  <!-- Multiple -->
-  <h3 class="font-mono text-sm font-medium text-white mb-1">Multiple</h3>
-  <p class="font-mono text-xs text-muted mb-4">Multiple items can be open simultaneously.</p>
-  <div class="flex gap-1 mb-3">
-    <button onclick="show('multiple','preview',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm bg-secondary text-white">Preview</button>
-    <button onclick="show('multiple','code',this)" class="px-3 py-1.5 text-xs font-mono font-medium rounded-sm text-muted hover:text-white">Code</button>
-  </div>
-  <div id="multiple-preview" class="p-8 border border-border rounded-md bg-[#0E0E0E] mb-10">
-    <AccordionMultiple client:load />
-  </div>
-  <pre id="multiple-code" class="hidden p-5 border border-border rounded-md bg-neutral text-xs font-mono mb-10 overflow-x-auto whitespace-pre-wrap break-words"><code><span class="text-[#A0A0A0]">{"<"}Accordion</span> <span class="text-[#55CFFF]">type</span><span class="text-[#A0A0A0]">="multiple"</span> <span class="text-[#55CFFF]">variant</span><span class="text-[#A0A0A0]">="default"{">"}</span>
-  <span class="text-[#A0A0A0]">...</span>
-<span class="text-[#A0A0A0]">{"<"}/Accordion{">"}</span></code></pre>
+    <!-- Multiple -->
+    <div id="multiple" style="margin-bottom:0;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Multiple</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Multiple items can be open simultaneously.</p>
+      <div class="flex" style="gap:4px;">
+        <button onclick="show('multiple','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('multiple','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      </div>
+      <div id="multiple-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+        <AccordionMultiple client:load />
+      </div>
+      <pre id="multiple-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="multiple"</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="default"</span><span style="color:#55CFFF;">{">"}</span>
+  <span style="color:#FFFFFF;">...</span>
+<span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
+    </div>
+  </section>
 
   <!-- Anatomy -->
-  <h2 class="font-mono text-base font-medium text-white mb-4">Anatomy</h2>
-  <ul class="font-mono text-xs text-muted space-y-2 mb-10 pl-4">
-    <li><span class="text-white">Accordion</span> - Root container that manages state</li>
-    <li><span class="text-white">AccordionItem</span> - Individual collapsible section</li>
-    <li><span class="text-white">AccordionTrigger</span> - Clickable header that toggles content</li>
-    <li><span class="text-white">AccordionPanel</span> - Expandable content panel</li>
-  </ul>
+  <section id="anatomy" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Anatomy</h2>
+    <ul class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; display:flex; flex-direction:column; gap:4px; padding-left:0; list-style:none;">
+      <li><span class="text-white">Accordion</span> - Root container that manages open/close state</li>
+      <li><span class="text-white">AccordionItem</span> - Individual collapsible section</li>
+      <li><span class="text-white">AccordionTrigger</span> - Clickable header that toggles visibility</li>
+      <li><span class="text-white">AccordionPanel</span> - Expandable content area</li>
+    </ul>
+  </section>
 
   <!-- Props -->
-  <h2 class="font-mono text-base font-medium text-white mb-4">Props</h2>
+  <section id="props">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:24px;">Props</h2>
 
-  <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">Accordion</h3>
-  <div class="border border-border rounded-md overflow-hidden mb-6">
-    <table class="w-full text-xs font-mono">
-      <thead><tr class="border-b border-border">
-        <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
-      </tr></thead>
-      <tbody>
-        <tr class="bg-surface"><td class="px-4 py-3 text-accent">variant</td><td class="px-4 py-3 text-muted">'default' | 'borderless' | 'grouped' | 'cards'</td><td class="px-4 py-3 text-muted">'default'</td></tr>
-        <tr><td class="px-4 py-3 text-accent">type</td><td class="px-4 py-3 text-muted">'single' | 'multiple'</td><td class="px-4 py-3 text-muted">required</td></tr>
-        <tr class="bg-surface"><td class="px-4 py-3 text-accent">collapsible</td><td class="px-4 py-3 text-muted">boolean</td><td class="px-4 py-3 text-muted">false</td></tr>
-        <tr><td class="px-4 py-3 text-accent">value</td><td class="px-4 py-3 text-muted">string | string[]</td><td class="px-4 py-3 text-muted">undefined</td></tr>
-        <tr class="bg-surface"><td class="px-4 py-3 text-accent">defaultValue</td><td class="px-4 py-3 text-muted">string | string[]</td><td class="px-4 py-3 text-muted">undefined</td></tr>
-        <tr><td class="px-4 py-3 text-accent">onValueChange</td><td class="px-4 py-3 text-muted">(value: string | string[]) ={">"} void</td><td class="px-4 py-3 text-muted">undefined</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">Accordion</h3>
+    <div class="border border-[#2A2A2A] overflow-hidden" style="border-radius:8px; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead>
+          <tr class="border-b border-[#2A2A2A]">
+            <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+            <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+            <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-[#1A1A1A] border-b border-[#2A2A2A]"><td style="padding:12px 16px; color:#55CFFF;">variant</td><td style="padding:12px 16px; color:#A0A0A0;">'default' | 'borderless' | 'grouped' | 'cards'</td><td style="padding:12px 16px; color:#A0A0A0;">'default'</td></tr>
+          <tr class="border-b border-[#2A2A2A]"><td style="padding:12px 16px; color:#55CFFF;">type</td><td style="padding:12px 16px; color:#A0A0A0;">'single' | 'multiple'</td><td style="padding:12px 16px; color:#A0A0A0;">required</td></tr>
+          <tr class="bg-[#1A1A1A] border-b border-[#2A2A2A]"><td style="padding:12px 16px; color:#55CFFF;">collapsible</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+          <tr class="border-b border-[#2A2A2A]"><td style="padding:12px 16px; color:#55CFFF;">value</td><td style="padding:12px 16px; color:#A0A0A0;">string | string[]</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr class="bg-[#1A1A1A] border-b border-[#2A2A2A]"><td style="padding:12px 16px; color:#55CFFF;">defaultValue</td><td style="padding:12px 16px; color:#A0A0A0;">string | string[]</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr><td style="padding:12px 16px; color:#55CFFF;">onValueChange</td><td style="padding:12px 16px; color:#A0A0A0;">(value: string | string[]) ={">"} void</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-  <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">AccordionItem</h3>
-  <div class="border border-border rounded-md overflow-hidden mb-6">
-    <table class="w-full text-xs font-mono">
-      <thead><tr class="border-b border-border">
-        <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
-      </tr></thead>
-      <tbody>
-        <tr class="bg-surface"><td class="px-4 py-3 text-accent">value</td><td class="px-4 py-3 text-muted">string</td><td class="px-4 py-3 text-muted">required</td></tr>
-        <tr><td class="px-4 py-3 text-accent">disabled</td><td class="px-4 py-3 text-muted">boolean</td><td class="px-4 py-3 text-muted">false</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">AccordionItem</h3>
+    <div class="border border-[#2A2A2A] overflow-hidden" style="border-radius:8px; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr class="border-b border-[#2A2A2A]">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr class="bg-[#1A1A1A] border-b border-[#2A2A2A]"><td style="padding:12px 16px; color:#55CFFF;">value</td><td style="padding:12px 16px; color:#A0A0A0;">string</td><td style="padding:12px 16px; color:#A0A0A0;">required</td></tr>
+          <tr><td style="padding:12px 16px; color:#55CFFF;">disabled</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-  <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">AccordionTrigger</h3>
-  <div class="border border-border rounded-md overflow-hidden mb-6">
-    <table class="w-full text-xs font-mono">
-      <thead><tr class="border-b border-border">
-        <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
-      </tr></thead>
-      <tbody>
-        <tr class="bg-surface"><td class="px-4 py-3 text-accent">icon</td><td class="px-4 py-3 text-muted">ReactNode</td><td class="px-4 py-3 text-muted">undefined</td></tr>
-        <tr><td class="px-4 py-3 text-accent">className</td><td class="px-4 py-3 text-muted">string</td><td class="px-4 py-3 text-muted">undefined</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">AccordionTrigger</h3>
+    <div class="border border-[#2A2A2A] overflow-hidden" style="border-radius:8px; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr class="border-b border-[#2A2A2A]">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr class="bg-[#1A1A1A]"><td style="padding:12px 16px; color:#55CFFF;">icon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-  <h3 class="font-mono text-xs font-medium text-muted uppercase tracking-wider mb-3">AccordionPanel</h3>
-  <div class="border border-border rounded-md overflow-hidden mb-10">
-    <table class="w-full text-xs font-mono">
-      <thead><tr class="border-b border-border">
-        <th class="text-left px-4 py-3 text-muted font-medium">Prop</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Type</th>
-        <th class="text-left px-4 py-3 text-muted font-medium">Default</th>
-      </tr></thead>
-      <tbody>
-        <tr class="bg-surface"><td class="px-4 py-3 text-accent">className</td><td class="px-4 py-3 text-muted">string</td><td class="px-4 py-3 text-muted">undefined</td></tr>
-        <tr><td class="px-4 py-3 text-accent">forceMount</td><td class="px-4 py-3 text-muted">boolean</td><td class="px-4 py-3 text-muted">false</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">AccordionPanel</h3>
+    <div class="border border-[#2A2A2A] overflow-hidden" style="border-radius:8px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr class="border-b border-[#2A2A2A]">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr class="bg-[#1A1A1A] border-b border-[#2A2A2A]"><td style="padding:12px 16px; color:#55CFFF;">className</td><td style="padding:12px 16px; color:#A0A0A0;">string</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr><td style="padding:12px 16px; color:#55CFFF;">forceMount</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
 </DocsLayout>
 
 <script>
   var pkgCmds = {
-    npx:  'npx mono add accordion',
-    bun:  'bunx mono add accordion',
-    pnpm: 'pnpm dlx mono add accordion',
-    yarn: 'yarn dlx mono add accordion'
+    npx:  { cmd: 'npx mono add accordion', html: '<span style="color:#EF4444;">npx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">accordion</span>' },
+    bun:  { cmd: 'bunx mono add accordion', html: '<span style="color:#EF4444;">bunx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">accordion</span>' },
+    pnpm: { cmd: 'pnpm dlx mono add accordion', html: '<span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add accordion</span>' },
+    yarn: { cmd: 'yarn dlx mono add accordion', html: '<span style="color:#EF4444;">yarn</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add accordion</span>' },
   };
-  var activePkg = 'npx';
+  var activePkg = 'bun';
 
   function setPkg(pkg, btn) {
     activePkg = pkg;
-    document.getElementById('pkg-cmd').textContent = pkgCmds[pkg];
+    document.getElementById('pkg-cmd').innerHTML = pkgCmds[pkg].html;
     ['npx','bun','pnpm','yarn'].forEach(function(p) {
       var b = document.getElementById('pkg-' + p);
-      if (p === pkg) {
-        b.classList.add('text-white', 'bg-surface');
-        b.classList.remove('text-muted');
-      } else {
-        b.classList.remove('text-white', 'bg-surface');
-        b.classList.add('text-muted');
-      }
+      if (p === pkg) { b.style.background = '#2A2A2A'; b.style.color = '#FFFFFF'; }
+      else { b.style.background = 'transparent'; b.style.color = '#A0A0A0'; }
     });
   }
 
   function copyPkg() {
-    navigator.clipboard.writeText(pkgCmds[activePkg]).then(function() {
+    navigator.clipboard.writeText(pkgCmds[activePkg].cmd).then(function() {
       document.getElementById('pkg-icon-copy').classList.add('hidden');
       document.getElementById('pkg-icon-check').classList.remove('hidden');
       setTimeout(function() {
@@ -261,20 +318,16 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
     });
   }
 
-  function copyText(text, btn) {
-    navigator.clipboard.writeText(text);
-  }
-
   function show(section, tab, btn) {
     var preview = document.getElementById(section + '-preview');
     var code = document.getElementById(section + '-code');
     var parent = btn.parentElement;
     parent.querySelectorAll('button').forEach(function(b) {
-      b.classList.remove('bg-secondary', 'text-white');
-      b.classList.add('text-muted');
+      b.style.background = '#121212';
+      b.style.color = '#A0A0A0';
     });
-    btn.classList.add('bg-secondary', 'text-white');
-    btn.classList.remove('text-muted');
+    btn.style.background = '#2A2A2A';
+    btn.style.color = '#FFFFFF';
     if (tab === 'preview') {
       preview.classList.remove('hidden');
       code.classList.add('hidden');
@@ -286,6 +339,5 @@ import { AccordionDefault, AccordionWithIcon, AccordionBorderless, AccordionGrou
 
   window.setPkg = setPkg;
   window.copyPkg = copyPkg;
-  window.copyText = copyText;
   window.show = show;
 </script>
