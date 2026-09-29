@@ -3,38 +3,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Mono DS - Minimalistic Design System">
-  <main class="min-h-screen bg-neutral flex flex-col items-center justify-center px-6 relative overflow-hidden">
+  <main style="min-height:100vh; background:#121212; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 24px; position:relative;">
 
-    <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center gap-6 py-5">
-      <a href="https://github.com/Manekenthe/mono-ds" target="_blank" class="text-muted hover:text-white transition-colors duration-150">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    <header style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:center; gap:6px; padding:20px;">
+      <a href="https://github.com/Manekenthe/mono-ds" target="_blank" style="color:#A0A0A0; display:flex; align-items:center; transition:color 150ms;" class="hover:text-white">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16,2a14,14,0,0,0-4.43,27.28c.7.13,1-.3,1-.67s0-1.21,0-2.38c-3.89.84-4.71-1.88-4.71-1.88A3.71,3.71,0,0,0,6.24,22.3c-1.27-.86.1-.85.1-.85A2.94,2.94,0,0,1,8.48,22.9a3,3,0,0,0,4.08,1.16,2.93,2.93,0,0,1,.88-1.87c-3.1-.36-6.37-1.56-6.37-6.92a5.4,5.4,0,0,1,1.44-3.76,5,5,0,0,1,.14-3.7s1.17-.38,3.85,1.43a13.3,13.3,0,0,1,7,0c2.67-1.81,3.84-1.43,3.84-1.43a5,5,0,0,1,.14,3.7,5.4,5.4,0,0,1,1.44,3.76c0,5.38-3.27,6.56-6.39,6.91a3.33,3.33,0,0,1,.95,2.59c0,1.87,0,3.38,0,3.84s.25.81,1,.67A14,14,0,0,0,16,2Z"/></svg>
       </a>
-      <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M16 2L30 16L16 30L2 16L16 2Z" fill="white"/></svg>
-      <a href="https://x.com/builtwithmono" target="_blank" class="text-muted hover:text-white transition-colors duration-150">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.736l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <a href="/" style="display:flex; align-items:center; color:#FFFFFF;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0C10 5.52285 14.4772 10 20 10C14.4772 10 10 14.4772 10 20C10 14.4772 5.52285 10 0 10C5.52285 10 10 5.52285 10 0Z" fill="white"/>
+        </svg>
+      </a>
+      <a href="https://x.com/builtwithmono" target="_blank" style="color:#A0A0A0; display:flex; align-items:center; transition:color 150ms;" class="hover:text-white">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m18.2342,14.1624 8.7424-10.1624h-2.0717l-7.591,8.8238-6.0629-8.8238h-6.9929l9.1684,13.3432-9.1684,10.6568h2.0718l8.0163-9.3183 6.4029,9.3183h6.9929l-9.5083-13.8376h.0005zm-2.8376,3.2984-.9289-1.3287L7.0763,5.5596h3.1822l5.9649,8.5323.9289,1.3287 7.7536,11.0907h-3.1822l-6.3272-9.05v-.0005z"/></svg>
       </a>
     </header>
 
-    <div class="relative z-10 text-center max-w-xl">
-      <h1 class="font-mono text-3xl font-medium text-white leading-tight mb-4 tracking-tight">
+    <div style="position:relative; z-index:10; text-align:center; max-width:560px;">
+      <h1 class="font-mono font-medium text-white" style="font-size:28px; line-height:36px; margin-bottom:16px; letter-spacing:-0.02em;">
         Mono components,<br/>installed as source
       </h1>
-      <p class="font-mono text-sm text-muted leading-relaxed mb-10 max-w-sm mx-auto">
+      <p class="font-mono text-[#A0A0A0]" style="font-size:14px; line-height:22px; margin-bottom:40px; font-weight:400; max-width:360px; margin-left:auto; margin-right:auto;">
         Accessible components for React and Tailwind CSS. One command copies the code into your project yours to restyle, extend, and keep.
       </p>
-      <div class="flex items-center justify-center gap-3 flex-wrap">
-        <a href="/components" class="px-4 py-2 bg-primary text-white text-sm font-mono font-medium rounded-md hover:opacity-90 transition-opacity duration-150">
+      <div style="display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:32px;">
+        <a href="/components" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 20px; background:#0071FC; color:#FFFFFF; border-radius:8px; text-decoration:none; transition:opacity 150ms;" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">
           Components
         </a>
-        <a href="/docs/introduction" class="px-4 py-2 bg-surface text-muted text-sm font-mono font-medium rounded-md border border-border hover:text-white hover:border-muted transition-colors duration-150">
+        <a href="/docs/introduction" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 20px; background:#2A2A2A; color:#A0A0A0; border-radius:8px; text-decoration:none; transition:color 150ms;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
           Documentation
         </a>
       </div>
-      <div class="mt-8 inline-flex items-center gap-3 px-4 py-2.5 bg-surface border border-border rounded-md">
-        <span class="font-mono text-sm text-muted">npx mono init</span>
-        <button id="copy-btn" class="text-muted hover:text-white transition-colors duration-150" aria-label="Copy">
-          <svg id="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
-          <svg id="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" class="hidden"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <!-- npx command -->
+      <div style="display:inline-flex; align-items:center; gap:12px; padding:10px 16px; background:#1A1A1A; border:1px solid #2A2A2A; border-radius:8px;">
+        <span class="font-mono font-medium text-[#A0A0A0]" style="font-size:14px; line-height:20px;">npx mono init</span>
+        <button id="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms;" aria-label="Copy" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
+          <span id="icon-copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></span>
+          <span id="icon-check" style="display:none;">
+            <svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>
+          </span>
         </button>
       </div>
     </div>
@@ -48,11 +55,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   var iconCheck = document.getElementById('icon-check');
   btn.addEventListener('click', function() {
     navigator.clipboard.writeText('npx mono init').then(function() {
-      iconCopy.classList.add('hidden');
-      iconCheck.classList.remove('hidden');
+      iconCopy.style.display = 'none';
+      iconCheck.style.display = 'flex';
       setTimeout(function() {
-        iconCopy.classList.remove('hidden');
-        iconCheck.classList.add('hidden');
+        iconCopy.style.display = 'flex';
+        iconCheck.style.display = 'none';
       }, 2000);
     });
   });

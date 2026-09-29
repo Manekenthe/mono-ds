@@ -7,32 +7,34 @@ const defaultItems = [
   { value: 'item-3', question: 'Where can I find my invoices?', answer: 'All invoices are available under Settings > Billing > Invoice history.' },
 ];
 
-// Carbon Design System icons 16x16
 function IconTwoFactor() {
   return (
-    <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-      <path d="M16 2L4 7v9c0 7.1 5.1 13.7 12 15.4C22.9 29.7 28 23.1 28 16V7L16 2zm0 2.3l10 4.5V16c0 6-4.2 11.6-10 13.4C10.2 27.6 6 22 6 16V8.8l10-4.5z"/>
-      <path d="M15 17.6l-3.3-3.3-1.4 1.4L15 20.4l6.7-6.7-1.4-1.4z"/>
-    </svg>
-  );
-}
-function IconPassword() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-      <path d="M11 16a5 5 0 1 1 5 5 5 5 0 0 1-5-5zm5-3a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/>
-      <path d="M21.7 10.3A9 9 0 0 0 7 16H2v2h5v-2a7 7 0 0 1 13.7-1.9L28 7.4V5l-6.3 5.3z"/>
-    </svg>
-  );
-}
-function IconDevices() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-      <path d="M28 6H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10v2H8v2h10v-2h-2v-2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 16H4V8h24z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <polygon points="11 23.18 9 21.179 7.589 22.589 11 26 17 20 15.59 18.59 11 23.18"/>
+      <path d="M28,30H24V28h4V16H24V8a4.0045,4.0045,0,0,0-4-4V2a6.0067,6.0067,0,0,1,6,6v6h2a2.0021,2.0021,0,0,1,2,2V28A2.0021,2.0021,0,0,1,28,30Z"/>
+      <path d="M20,14H18V8A6,6,0,0,0,6,8v6H4a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H20a2,2,0,0,0,2-2V16A2,2,0,0,0,20,14ZM8,8a4,4,0,0,1,8,0v6H8ZM20,28H4V16H20Z"/>
     </svg>
   );
 }
 
-// 1. Single
+function IconPassword() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M21,2a8.9977,8.9977,0,0,0-8.6119,11.6118L2,24v6H8L18.3881,19.6118A9,9,0,1,0,21,2Zm0,16a7.0125,7.0125,0,0,1-2.0322-.3022L17.821,17.35l-.8472.8472-3.1811,3.1812L12.4141,20,11,21.4141l1.3787,1.3786-1.5859,1.586L9.4141,23,8,24.4141l1.3787,1.3786L7.1716,28H4V24.8284l9.8023-9.8023.8472-.8474-.3473-1.1467A7,7,0,1,1,21,18Z"/>
+      <circle cx="22" cy="10" r="2"/>
+    </svg>
+  );
+}
+
+function IconDevices() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M10,30H4a2,2,0,0,1-2-2V16a2,2,0,0,1,2-2h6a2,2,0,0,1,2,2V28A2,2,0,0,1,10,30ZM4,16V28h6V16Z"/>
+      <path d="M28,4H6A2,2,0,0,0,4,6v6H6V6H28V20H14v2h2v4H14v2h9V26H18V22H28a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4Z"/>
+    </svg>
+  );
+}
+
 export function AccordionDefault() {
   return (
     <Accordion type="single" collapsible variant="default" className="w-full">
@@ -46,7 +48,6 @@ export function AccordionDefault() {
   );
 }
 
-// 2. With Icon - icon only on AccordionTrigger
 const iconItems = [
   { value: 'icon-1', icon: <IconTwoFactor />, question: 'Two-factor authentication', answer: 'Enable 2FA to add an extra layer of security to your account.' },
   { value: 'icon-2', icon: <IconPassword />, question: 'Password and security settings', answer: 'Update your password and manage login sessions.' },
@@ -66,7 +67,12 @@ export function AccordionWithIcon() {
   );
 }
 
-// 3. Borderless
+const groupedItems = [
+  { value: 'g-1', question: 'Shipping options and delivery', answer: 'We offer standard courier delivery and pickup location options.' },
+  { value: 'g-2', question: 'Payment methods on delivery', answer: 'Cash on delivery and card payment are both supported.' },
+  { value: 'g-3', question: 'How to return an item within 14 days', answer: 'Contact support and request a return label. Ship within 14 days of purchase.' },
+];
+
 export function AccordionBorderless() {
   return (
     <Accordion type="single" collapsible variant="borderless" className="w-full">
@@ -79,13 +85,6 @@ export function AccordionBorderless() {
     </Accordion>
   );
 }
-
-// 4. Grouped
-const groupedItems = [
-  { value: 'g-1', question: 'Shipping options and delivery', answer: 'We offer standard courier delivery and pickup location options.' },
-  { value: 'g-2', question: 'Payment methods on delivery', answer: 'Cash on delivery and card payment are both supported.' },
-  { value: 'g-3', question: 'How to return an item within 14 days', answer: 'Contact support and request a return label. Ship within 14 days of purchase.' },
-];
 
 export function AccordionGrouped() {
   return (
@@ -100,7 +99,6 @@ export function AccordionGrouped() {
   );
 }
 
-// 5. Cards
 const cardItems = [
   { value: 'c-1', question: '14-day money-back guarantee', answer: 'Request a full refund within 14 days if you are not satisfied.' },
   { value: 'c-2', question: '99.9% uptime service guarantee', answer: 'We maintain high availability across all regions with redundant infrastructure.' },
@@ -120,7 +118,6 @@ export function AccordionCards() {
   );
 }
 
-// 6. Multiple
 const multipleItems = [
   { value: 'm-1', question: 'Step 1: Create your account', answer: 'Enter your basic info and confirm your email address to register.' },
   { value: 'm-2', question: 'Step 2: Set up your profile', answer: 'Add billing details and select your preferred language.' },

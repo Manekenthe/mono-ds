@@ -7,10 +7,11 @@ export type AccordionVariant = 'default' | 'borderless' | 'grouped' | 'cards';
 const VariantCtx = React.createContext<AccordionVariant>('default');
 const HasIconCtx = React.createContext<boolean>(false);
 
+// Carbon: Chevron Down
 function Chevron({ className }: { className?: string }) {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={className} aria-hidden="true">
-      <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" className={className} aria-hidden="true">
+      <polygon points="16,22 6,12 7.4,10.6 16,19.2 24.6,10.6 26,12"/>
     </svg>
   );
 }
