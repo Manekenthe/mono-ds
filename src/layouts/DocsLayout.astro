@@ -97,7 +97,7 @@ function isComponentActive(item: string) {
 
     <!-- Main Content -->
     <main id="main-content" style="flex:1; min-width:0; margin-left:270px; margin-right:270px; padding:18px 24px 48px;">
-      <div style="border:1px solid #2A2A2A; background:#121212; border-radius:16px; padding:32px;">
+      <div id="main-inner" style="border:1px solid #2A2A2A; background:#121212; border-radius:16px; padding:32px;">
         <slot />
       </div>
     </main>
@@ -142,62 +142,73 @@ function isComponentActive(item: string) {
 </BaseLayout>
 
 <style>
-  /* Nav */
   .nav-btn { color: #A0A0A0; }
   .nav-btn:hover, .nav-btn-active { background: #1A1A1A !important; color: #FFFFFF !important; }
 
-  /* Icon links */
   .icon-link { color: #A0A0A0; display:flex; align-items:center; transition:color 150ms; }
   .icon-link:hover { color: #FFFFFF; }
 
-  /* Sidebar links */
   .sidebar-link { color: #A0A0A0; }
   .sidebar-link:hover { background: #1A1A1A; color: #FFFFFF; }
   .sidebar-link-active { background: #1A1A1A !important; color: #FFFFFF !important; }
 
-  /* Right sidebar links */
-  .page-link { color: #A0A0A0; }
+  .page-link { color: #A0A0A0; transition: color 150ms; }
   .page-link:hover { color: #FFFFFF; }
   .page-link-active { color: #FFFFFF !important; }
 
-  /* Responsive */
   @media (max-width: 1024px) {
     #left-sidebar { display: none !important; }
     #right-sidebar { display: none !important; }
-    #main-content { margin-left: 0 !important; margin-right: 0 !important; }
+    #main-content { margin-left: 0 !important; margin-right: 0 !important; padding: 12px !important; }
+    #main-inner { border: none !important; border-radius: 0 !important; padding: 20px !important; }
   }
 </style>
 
 <script>
-  var links = document.querySelectorAll('.page-link');
+  var links = Array.from(document.querySelectorAll('.page-link'));
   var indicator = document.getElementById('track-indicator');
-  var current = 0;
+  var trackEl = indicator ? indicator.parentElement : null;
 
-  function setActive(idx) {
-    current = idx;
-    links.forEach(function(l, i) {
-      l.classList.toggle('page-link-active', i === idx);
-    });
-    if (indicator) indicator.style.top = (idx * 40) + 'px';
+  function setActive(linkEl) {
+    links.forEach(function(l) { l.classList.remove('page-link-active'); });
+    linkEl.classList.add('page-link-active');
+    if (indicator && trackEl) {
+      var trackTop = trackEl.getBoundingClientRect().top;
+      var linkTop = linkEl.getBoundingClientRect().top;
+      var offset = linkTop - trackTop;
+      indicator.style.top = offset + 'px';
+      indicator.style.height = linkEl.offsetHeight + 'px';
+    }
   }
 
-  links.forEach(function(link, i) {
-    link.addEventListener('click', function() { setActive(i); });
+  // Set first link active on load
+  if (links.length > 0) setActive(links[0]);
+
+  links.forEach(function(link) {
+    link.addEventListener('click', function() { setActive(link); });
   });
 
-  var targets = Array.from(document.querySelectorAll('[id]')).filter(function(el) {
-    return Array.from(links).some(function(l) { return l.getAttribute('href') === '#' + el.id; });
+  // Scroll spy - match href to section id
+  var sectionMap = {};
+  links.forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      var el = document.getElementById(href.slice(1));
+      if (el) sectionMap[href.slice(1)] = link;
+    }
   });
 
-  if (targets.length > 0 && 'IntersectionObserver' in window) {
+  var sectionEls = Object.keys(sectionMap).map(function(id) { return document.getElementById(id); }).filter(Boolean);
+
+  if (sectionEls.length > 0 && 'IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (e.isIntersecting) {
-          var idx = targets.indexOf(e.target);
-          if (idx !== -1) setActive(idx);
+          var link = sectionMap[e.target.id];
+          if (link) setActive(link);
         }
       });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    targets.forEach(function(t) { obs.observe(t); });
+    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+    sectionEls.forEach(function(el) { obs.observe(el); });
   }
 </script>

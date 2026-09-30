@@ -26,14 +26,14 @@ const sections = [
 
   <!-- Default Preview/Code -->
   <div id="single" style="margin-bottom:48px;">
-    <div class="flex" style="gap:4px; margin-bottom:0;">
-      <button onclick="show('default','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-      <button onclick="show('default','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+    <div class="flex" style="gap:4px; margin-bottom:4px;">
+      <button onclick="show('default','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+      <button onclick="show('default','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
     </div>
-    <div id="default-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px 32px;">
+    <div id="default-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; padding:32px 60px 32px;">
       <AccordionDefault client:load />
     </div>
-    <pre id="default-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#EF4444;">import</span> <span style="color:#FFFFFF;">{"{"}</span>
+    <pre id="default-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#EF4444;">import</span> <span style="color:#FFFFFF;">{"{"}</span>
   <span style="color:#FFFFFF;">Accordion,</span>
   <span style="color:#FFFFFF;">AccordionItem,</span>
   <span style="color:#FFFFFF;">AccordionPanel,</span>
@@ -125,14 +125,14 @@ const sections = [
     <div id="with-icon" style="margin-bottom:48px;">
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Icon</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Add Carbon icons to accordion triggers for visual context.</p>
-      <div class="flex" style="gap:4px; margin-bottom:0;">
-        <button onclick="show('icon','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      <div class="flex" style="gap:4px; margin-bottom:4px;">
+        <button onclick="show('icon','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
       </div>
-      <div id="icon-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+      <div id="icon-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; padding:32px 60px;">
         <AccordionWithIcon client:load />
       </div>
-      <pre id="icon-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}AccordionItem</span> <span style="color:#6F42C1;">value</span><span style="color:#FFFFFF;">="item-1"</span><span style="color:#55CFFF;">{">"}</span>
+      <pre id="icon-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}AccordionItem</span> <span style="color:#6F42C1;">value</span><span style="color:#FFFFFF;">="item-1"</span><span style="color:#55CFFF;">{">"}</span>
   <span style="color:#55CFFF;">{"<"}AccordionTrigger</span> <span style="color:#6F42C1;">icon</span><span style="color:#FFFFFF;">={"{"}{"<"}IconTwoFactor /{">"}{"}"}{">"}</span>
     <span style="color:#FFFFFF;">Two-factor authentication</span>
   <span style="color:#55CFFF;">{"<"}/AccordionTrigger{">"}</span>
@@ -145,13 +145,13 @@ const sections = [
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Borderless</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">No dividers between items for a minimal look.</p>
       <div class="flex" style="gap:4px;">
-        <button onclick="show('borderless','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('borderless','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        <button onclick="show('borderless','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('borderless','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
       </div>
-      <div id="borderless-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+      <div id="borderless-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; padding:32px 60px;">
         <AccordionBorderless client:load />
       </div>
-      <pre id="borderless-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="borderless"</span><span style="color:#55CFFF;">{">"}</span>
+      <pre id="borderless-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="borderless"</span><span style="color:#55CFFF;">{">"}</span>
   <span style="color:#FFFFFF;">...</span>
 <span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
     </div>
@@ -161,13 +161,13 @@ const sections = [
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Grouped</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">All items wrapped in a single bordered container.</p>
       <div class="flex" style="gap:4px;">
-        <button onclick="show('grouped','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('grouped','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        <button onclick="show('grouped','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('grouped','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
       </div>
-      <div id="grouped-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+      <div id="grouped-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; padding:32px 60px;">
         <AccordionGrouped client:load />
       </div>
-      <pre id="grouped-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="grouped"</span><span style="color:#55CFFF;">{">"}</span>
+      <pre id="grouped-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="grouped"</span><span style="color:#55CFFF;">{">"}</span>
   <span style="color:#FFFFFF;">...</span>
 <span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
     </div>
@@ -177,13 +177,13 @@ const sections = [
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Cards</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Each item as an individual card with its own border.</p>
       <div class="flex" style="gap:4px;">
-        <button onclick="show('cards','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('cards','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        <button onclick="show('cards','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('cards','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
       </div>
-      <div id="cards-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+      <div id="cards-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; padding:32px 60px;">
         <AccordionCards client:load />
       </div>
-      <pre id="cards-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="cards"</span><span style="color:#55CFFF;">{">"}</span>
+      <pre id="cards-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="single"</span> <span style="color:#6F42C1;">collapsible</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="cards"</span><span style="color:#55CFFF;">{">"}</span>
   <span style="color:#FFFFFF;">...</span>
 <span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
     </div>
@@ -193,13 +193,13 @@ const sections = [
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Multiple</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Multiple items can be open simultaneously.</p>
       <div class="flex" style="gap:4px;">
-        <button onclick="show('multiple','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('multiple','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px 8px 0 0; background:#121212; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        <button onclick="show('multiple','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('multiple','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
       </div>
-      <div id="multiple-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:0 8px 8px 8px; padding:32px 60px;">
+      <div id="multiple-preview" class="border border-[#2A2A2A] bg-[#1A1A1A]" style="border-radius:8px; padding:32px 60px;">
         <AccordionMultiple client:load />
       </div>
-      <pre id="multiple-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:0 8px 8px 8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="multiple"</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="default"</span><span style="color:#55CFFF;">{">"}</span>
+      <pre id="multiple-code" class="hidden border border-[#2A2A2A] bg-[#1A1A1A] font-mono overflow-x-auto" style="border-radius:8px; padding:32px 60px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Accordion</span> <span style="color:#6F42C1;">type</span><span style="color:#FFFFFF;">="multiple"</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="default"</span><span style="color:#55CFFF;">{">"}</span>
   <span style="color:#FFFFFF;">...</span>
 <span style="color:#55CFFF;">{"<"}/Accordion{">"}</span></code></pre>
     </div>
@@ -323,7 +323,7 @@ const sections = [
     var code = document.getElementById(section + '-code');
     var parent = btn.parentElement;
     parent.querySelectorAll('button').forEach(function(b) {
-      b.style.background = '#121212';
+      b.style.background = 'transparent';
       b.style.color = '#A0A0A0';
     });
     btn.style.background = '#2A2A2A';
