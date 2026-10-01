@@ -26,7 +26,8 @@ const sections = [
 
   <!-- Default Preview/Code -->
   <div id="single" style="margin-bottom:48px;">
-    <div class="flex" style="gap:4px; margin-bottom:8px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <div style="display:flex; gap:4px;">
       <button onclick="show('default','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
       <button onclick="show('default','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
     </div>
@@ -125,10 +126,45 @@ const sections = [
     <div id="with-icon" style="margin-bottom:48px;">
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Icon</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Add Carbon icons to accordion triggers for visual context.</p>
-      <div class="flex" style="gap:4px; margin-bottom:8px;">
-        <button onclick="show('icon','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('icon','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('icon', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; padding:0; transition:color 150ms;" aria-label="Copy code" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
+      <button id="copy-icon" onclick="copySection('icon', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms; flex-shrink:0;" aria-label="Copy code"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+    </div>
+      <button onclick="copySection('multiple')" class="copy-tab-btn" title="Copy code" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
+        <span class="copy-tab-icon"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></span>
+        <span class="copy-tab-check" style="display:none;"><svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" aria-hidden="true"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg></span>
+      </button>
+    </div>
+      <button onclick="copySection('cards')" class="copy-tab-btn" title="Copy code" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
+        <span class="copy-tab-icon"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></span>
+        <span class="copy-tab-check" style="display:none;"><svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" aria-hidden="true"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg></span>
+      </button>
+    </div>
+      <button onclick="copySection('grouped')" class="copy-tab-btn" title="Copy code" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
+        <span class="copy-tab-icon"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></span>
+        <span class="copy-tab-check" style="display:none;"><svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" aria-hidden="true"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg></span>
+      </button>
+    </div>
+      <button onclick="copySection('borderless')" class="copy-tab-btn" title="Copy code" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
+        <span class="copy-tab-icon"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></span>
+        <span class="copy-tab-check" style="display:none;"><svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" aria-hidden="true"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg></span>
+      </button>
+    </div>
+      <button onclick="copySection('icon')" class="copy-tab-btn" title="Copy code" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
+        <span class="copy-tab-icon"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></span>
+        <span class="copy-tab-check" style="display:none;"><svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" aria-hidden="true"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg></span>
+      </button>
+    </div>
+      <button onclick="copySection('default')" class="copy-tab-btn" title="Copy code" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">
+        <span class="copy-tab-icon"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></span>
+        <span class="copy-tab-check" style="display:none;"><svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" aria-hidden="true"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg></span>
+      </button>
+    </div>
       <div id="icon-preview" class="preview-box border border-[#2A2A2A] bg-[#1A1A1A]" class="preview-box" style="border-radius:8px;">
         <AccordionWithIcon client:load />
       </div>
@@ -144,10 +180,15 @@ const sections = [
     <div id="borderless" style="margin-bottom:48px;">
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Borderless</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">No dividers between items for a minimal look.</p>
-      <div class="flex" style="gap:4px; margin-bottom:8px;">
-        <button onclick="show('borderless','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('borderless','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('borderless','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('borderless','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('borderless', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; padding:0; transition:color 150ms;" aria-label="Copy code" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
+      <button id="copy-borderless" onclick="copySection('borderless', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms; flex-shrink:0;" aria-label="Copy code"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+    </div>
       <div id="borderless-preview" class="preview-box border border-[#2A2A2A] bg-[#1A1A1A]" class="preview-box" style="border-radius:8px;">
         <AccordionBorderless client:load />
       </div>
@@ -160,10 +201,15 @@ const sections = [
     <div id="grouped" style="margin-bottom:48px;">
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Grouped</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">All items wrapped in a single bordered container.</p>
-      <div class="flex" style="gap:4px; margin-bottom:8px;">
-        <button onclick="show('grouped','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('grouped','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('grouped','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('grouped','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('grouped', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; padding:0; transition:color 150ms;" aria-label="Copy code" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
+      <button id="copy-grouped" onclick="copySection('grouped', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms; flex-shrink:0;" aria-label="Copy code"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+    </div>
       <div id="grouped-preview" class="preview-box border border-[#2A2A2A] bg-[#1A1A1A]" class="preview-box" style="border-radius:8px;">
         <AccordionGrouped client:load />
       </div>
@@ -176,10 +222,15 @@ const sections = [
     <div id="cards" style="margin-bottom:48px;">
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Cards</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Each item as an individual card with its own border.</p>
-      <div class="flex" style="gap:4px; margin-bottom:8px;">
-        <button onclick="show('cards','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('cards','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('cards','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('cards','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('cards', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; padding:0; transition:color 150ms;" aria-label="Copy code" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
+      <button id="copy-cards" onclick="copySection('cards', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms; flex-shrink:0;" aria-label="Copy code"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+    </div>
       <div id="cards-preview" class="preview-box border border-[#2A2A2A] bg-[#1A1A1A]" class="preview-box" style="border-radius:8px;">
         <AccordionCards client:load />
       </div>
@@ -192,10 +243,15 @@ const sections = [
     <div id="multiple" style="margin-bottom:0;">
       <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Multiple</h3>
       <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Multiple items can be open simultaneously.</p>
-      <div class="flex" style="gap:4px; margin-bottom:8px;">
-        <button onclick="show('multiple','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
-        <button onclick="show('multiple','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('multiple','preview',this)" class="preview-tab active font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('multiple','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('multiple', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; padding:0; transition:color 150ms;" aria-label="Copy code" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
+      <button id="copy-multiple" onclick="copySection('multiple', this)" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; align-items:center; transition:color 150ms; flex-shrink:0;" aria-label="Copy code"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+    </div>
       <div id="multiple-preview" class="preview-box border border-[#2A2A2A] bg-[#1A1A1A]" class="preview-box" style="border-radius:8px;">
         <AccordionMultiple client:load />
       </div>
@@ -356,6 +412,27 @@ const sections = [
     }
   }
 
+  function copySection(section) {
+    var codeEl = document.getElementById(section + '-code');
+    if (!codeEl) return;
+    var text = codeEl.innerText || codeEl.textContent || '';
+    navigator.clipboard.writeText(text.trim()).then(function() {
+      var btns = document.querySelectorAll('.copy-tab-btn');
+      btns.forEach(function(btn) {
+        if (btn.getAttribute('onclick') === "copySection('" + section + "')") {
+          var icon = btn.querySelector('.copy-tab-icon');
+          var check = btn.querySelector('.copy-tab-check');
+          if (icon) icon.style.display = 'none';
+          if (check) check.style.display = 'flex';
+          setTimeout(function() {
+            if (icon) icon.style.display = 'flex';
+            if (check) check.style.display = 'none';
+          }, 2000);
+        }
+      });
+    });
+  }
+  window.copySection = copySection;
   window.setPkg = setPkg;
   window.copyPkg = copyPkg;
   window.show = show;
