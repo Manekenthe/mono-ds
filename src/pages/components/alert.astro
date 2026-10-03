@@ -1,0 +1,393 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import {
+  AlertDefault, AlertWithIcon, AlertInformation, AlertSuccess, AlertWarning,
+  AlertError, AlertWithClose, AlertTitleOnly, AlertWithList, AlertWithAction
+} from '../../components/docs/AlertPreview';
+
+const sections = [
+  { id: 'installation', title: 'Installation' },
+  { id: 'usage', title: 'Usage' },
+  { id: 'examples', title: 'Examples', sub: [
+    { id: 'default', title: 'Default' },
+    { id: 'with-icon', title: 'With Icon' },
+    { id: 'information', title: 'Information' },
+    { id: 'success', title: 'Success' },
+    { id: 'warning', title: 'Warning' },
+    { id: 'error', title: 'Error' },
+    { id: 'with-close', title: 'With Close Button' },
+    { id: 'title-only', title: 'Title Only' },
+    { id: 'with-list', title: 'With List' },
+    { id: 'with-action', title: 'With Action' },
+  ]},
+  { id: 'anatomy', title: 'Anatomy' },
+  { id: 'props', title: 'Props' },
+];
+
+const variants = [
+  { id: 'default', name: 'Default', desc: 'Basic alert with title and description.', comp: 'AlertDefault' },
+  { id: 'with-icon', name: 'With Icon', desc: 'Alert with a leading icon.', comp: 'AlertWithIcon' },
+  { id: 'information', name: 'Information', desc: 'Informational alert with blue tone.', comp: 'AlertInformation' },
+  { id: 'success', name: 'Success', desc: 'Confirms a successful action.', comp: 'AlertSuccess' },
+  { id: 'warning', name: 'Warning', desc: 'Warns about an approaching issue.', comp: 'AlertWarning' },
+  { id: 'error', name: 'Error', desc: 'Signals a failed action or error state.', comp: 'AlertError' },
+  { id: 'with-close', name: 'With Close Button', desc: 'Dismissible alert with a close control.', comp: 'AlertWithClose' },
+  { id: 'title-only', name: 'Title Only', desc: 'Compact alert with no description.', comp: 'AlertTitleOnly' },
+  { id: 'with-list', name: 'With List', desc: 'Alert listing multiple issues.', comp: 'AlertWithList' },
+  { id: 'with-action', name: 'With Action', desc: 'Alert with primary and secondary actions.', comp: 'AlertWithAction' },
+];
+---
+
+<DocsLayout title="Alert" description="Contextual feedback messages." activeComponent="alert" sections={sections}>
+
+  <h1 class="font-mono font-medium text-white" style="font-size:20px; line-height:32px; margin-bottom:4px;">Alert</h1>
+  <p class="font-mono text-[#A0A0A0]" style="font-size:16px; line-height:24px; font-weight:400; margin-bottom:48px;">Contextual feedback messages for user actions and system states.</p>
+
+  <!-- Default preview -->
+  <div id="default" style="margin-bottom:48px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <div style="display:flex; gap:4px;">
+        <button onclick="show('d0','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+        <button onclick="show('d0','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+      </div>
+      <button onclick="copySection('d0', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+      </button>
+    </div>
+    <div id="d0-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <AlertDefault client:load />
+    </div>
+    <pre id="d0-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px;"><code><span style="color:#55CFFF;">{"<"}Alert</span> <span style="color:#6F42C1;">title</span><span style="color:#FFFFFF;">="Changes saved"</span>
+  <span style="color:#6F42C1;">description</span><span style="color:#FFFFFF;">="Your profile settings have been updated successfully."</span>
+<span style="color:#55CFFF;">{"/>"}</span></code></pre>
+  </div>
+
+  <!-- Installation -->
+  <section id="installation" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Installation</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden;">
+      <div style="display:flex; align-items:center; border-bottom:1px solid #2A2A2A; padding:0 16px; gap:4px;">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="#A0A0A0" style="margin-right:8px; flex-shrink:0;"><path d="M6 22l8-6-8-6v12zM14 22h12v2H14z"/></svg>
+        <button onclick="setPkg('npx',this)" id="pkg-npx" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">npx</button>
+        <button onclick="setPkg('bun',this)" id="pkg-bun" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer; border-radius:8px;">bun</button>
+        <button onclick="setPkg('pnpm',this)" id="pkg-pnpm" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">pnpm</button>
+        <button onclick="setPkg('yarn',this)" id="pkg-yarn" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">yarn</button>
+        <div style="margin-left:auto;">
+          <button onclick="copyPkg()" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy">
+            <svg id="pkg-icon-copy" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+            <svg id="pkg-icon-check" width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" style="display:none;"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; padding:12px 16px;">
+        <span class="font-mono" style="color:#A0A0A0; font-size:14px; margin-right:16px; user-select:none;">1</span>
+        <code id="pkg-cmd" class="font-mono" style="font-size:14px; line-height:20px;"><span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add alert</span></code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section id="usage" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Usage</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden; margin-bottom:8px;">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#A0A0A0; user-select:none; margin-right:16px;">1</span><span style="color:#EF4444;">import</span> <span style="color:#FFFFFF;">{"{"} Alert {"}"}</span> <span style="color:#EF4444;">from</span> <span style="color:#22C55E;">"@/components/ui/alert"</span></code></pre>
+    </div>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden;">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Alert</span>
+  <span style="color:#6F42C1;">tone</span><span style="color:#FFFFFF;">="success"</span>
+  <span style="color:#6F42C1;">icon</span><span style="color:#FFFFFF;">={"{"}{"<"}IconCheckmark /{">"}{"}"}</span>
+  <span style="color:#6F42C1;">title</span><span style="color:#FFFFFF;">="Deployment successful"</span>
+  <span style="color:#6F42C1;">description</span><span style="color:#FFFFFF;">="Your changes are now live on production."</span>
+<span style="color:#55CFFF;">{"/>"}</span></code></pre>
+    </div>
+  </section>
+
+  <!-- Examples -->
+  <section id="examples" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:32px;">Examples</h2>
+
+    <div id="with-icon" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Icon</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Alert with a leading icon for added context.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_icon','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_icon', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="with_icon-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertWithIcon client:load />
+      </div>
+      <pre id="with_icon-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert icon={<IconCommand />} title="Keyboard shortcut updated" description="Command + K now opens the quick search." /></code></pre>
+    </div>
+
+    <div id="information" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Information</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Informational alert with a blue accent tone.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('information','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('information','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('information', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="information-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertInformation client:load />
+      </div>
+      <pre id="information-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert tone="info" icon={<IconInformation />} title="New version available" description="Mono DS 1.2 includes new components and bug fixes." /></code></pre>
+    </div>
+
+    <div id="success" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Success</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Confirms that an action completed successfully.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('success','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('success','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('success', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="success-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertSuccess client:load />
+      </div>
+      <pre id="success-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert tone="success" icon={<IconCheckmark />} title="Deployment successful" description="Your changes are now live on production." /></code></pre>
+    </div>
+
+    <div id="warning" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Warning</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Warns the user about an approaching issue.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('warning','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('warning','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('warning', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="warning-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertWarning client:load />
+      </div>
+      <pre id="warning-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert tone="warning" icon={<IconWarning />} title="Approaching usage limit" description="You have used 90% of your monthly API quota." /></code></pre>
+    </div>
+
+    <div id="error" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Error</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Signals a failed action or error state.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('error','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('error','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('error', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="error-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertError client:load />
+      </div>
+      <pre id="error-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert tone="error" icon={<IconClose />} title="Payment failed" description="We could not process your card." /></code></pre>
+    </div>
+
+    <div id="with-close" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Close Button</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Dismissible alert the user can close manually.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_close','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_close','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_close', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="with_close-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertWithClose client:load />
+      </div>
+      <pre id="with_close-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert icon={<IconCommand />} title="Tip of the day" description="Press Cmd+Shift+P to open the command palette." closable /></code></pre>
+    </div>
+
+    <div id="title-only" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Title Only</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Compact alert without a description.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('title_only','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('title_only','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('title_only', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="title_only-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertTitleOnly client:load />
+      </div>
+      <pre id="title_only-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert tone="success" icon={<IconCheckmark />} title="All systems operational" /></code></pre>
+    </div>
+
+    <div id="with-list" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With List</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Alert listing multiple related issues.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_list','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_list','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_list', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="with_list-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertWithList client:load />
+      </div>
+      <pre id="with_list-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert tone="error" icon={<IconClose />} title="Form submission failed" list={["Email is required", "Password too short", "Accept terms"]} /></code></pre>
+    </div>
+
+    <div id="with-action" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Action</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Alert with primary and secondary action buttons.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_action','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_action','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_action', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+        </button>
+      </div>
+      <div id="with_action-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <AlertWithAction client:load />
+      </div>
+      <pre id="with_action-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code style="color:#A0A0A0;"><Alert icon={<IconCommand />} title="Update available" description="A new version of the CLI is ready to install." actions /></code></pre>
+    </div>
+
+  </section>
+
+  <!-- Anatomy -->
+  <section id="anatomy" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Anatomy</h2>
+    <ul class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; display:flex; flex-direction:column; gap:4px; padding-left:0; list-style:none;">
+      <li><span class="text-white">Alert</span> - Root container with tone-based styling</li>
+      <li><span class="text-white">Icon</span> - Optional leading icon matching the tone</li>
+      <li><span class="text-white">Title</span> - Primary message, always visible</li>
+      <li><span class="text-white">Description</span> - Optional supporting text</li>
+      <li><span class="text-white">Actions</span> - Optional buttons for user response</li>
+    </ul>
+  </section>
+
+  <!-- Props -->
+  <section id="props">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:24px;">Props</h2>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">Alert</h3>
+    <div style="border:1px solid #2A2A2A; border-radius:8px; overflow:hidden;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr style="border-bottom:1px solid #2A2A2A;">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">tone</td><td style="padding:12px 16px; color:#A0A0A0;">'default' | 'info' | 'success' | 'warning' | 'error'</td><td style="padding:12px 16px; color:#A0A0A0;">'default'</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">title</td><td style="padding:12px 16px; color:#A0A0A0;">string</td><td style="padding:12px 16px; color:#A0A0A0;">required</td></tr>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">description</td><td style="padding:12px 16px; color:#A0A0A0;">string</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">icon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">list</td><td style="padding:12px 16px; color:#A0A0A0;">string[]</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">closable</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+          <tr style="background:#1A1A1A;"><td style="padding:12px 16px; color:#55CFFF;">actions</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</DocsLayout>
+
+<style>
+  .preview-box { padding: 32px 60px; }
+  .code-block { padding: 24px !important; }
+  .copy-btn:hover { color: #FFFFFF !important; }
+  @media (max-width: 1024px) {
+    .preview-box { padding: 24px !important; }
+  }
+</style>
+
+<script>
+  var pkgCmds = {
+    npx:  { cmd: 'npx mono add alert', html: '<span style="color:#EF4444;">npx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">alert</span>' },
+    bun:  { cmd: 'bunx mono add alert', html: '<span style="color:#EF4444;">bunx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">alert</span>' },
+    pnpm: { cmd: 'pnpm dlx mono add alert', html: '<span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add alert</span>' },
+    yarn: { cmd: 'yarn dlx mono add alert', html: '<span style="color:#EF4444;">yarn</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add alert</span>' },
+  };
+  var activePkg = 'bun';
+
+  function setPkg(pkg, btn) {
+    activePkg = pkg;
+    document.getElementById('pkg-cmd').innerHTML = pkgCmds[pkg].html;
+    ['npx','bun','pnpm','yarn'].forEach(function(p) {
+      var b = document.getElementById('pkg-' + p);
+      if (p === pkg) { b.style.background = '#2A2A2A'; b.style.color = '#FFFFFF'; }
+      else { b.style.background = 'transparent'; b.style.color = '#A0A0A0'; }
+    });
+  }
+
+  function copyPkg() {
+    navigator.clipboard.writeText(pkgCmds[activePkg].cmd).then(function() {
+      document.getElementById('pkg-icon-copy').style.display = 'none';
+      document.getElementById('pkg-icon-check').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('pkg-icon-copy').style.display = 'block';
+        document.getElementById('pkg-icon-check').style.display = 'none';
+      }, 2000);
+    });
+  }
+
+  function show(section, tab, btn) {
+    var preview = document.getElementById(section + '-preview');
+    var code = document.getElementById(section + '-code');
+    var parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(function(b) {
+      b.style.background = 'transparent';
+      b.style.color = '#A0A0A0';
+    });
+    btn.style.background = '#2A2A2A';
+    btn.style.color = '#FFFFFF';
+    if (tab === 'preview') {
+      preview.classList.remove('hidden');
+      code.classList.add('hidden');
+    } else {
+      preview.classList.add('hidden');
+      code.classList.remove('hidden');
+    }
+  }
+
+  function copySection(section, btn) {
+    var codeEl = document.getElementById(section + '-code');
+    if (!codeEl) return;
+    navigator.clipboard.writeText(codeEl.innerText.trim()).then(function() {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>';
+      setTimeout(function() { btn.innerHTML = orig; }, 2000);
+    });
+  }
+
+  window.setPkg = setPkg;
+  window.copyPkg = copyPkg;
+  window.show = show;
+  window.copySection = copySection;
+</script>
