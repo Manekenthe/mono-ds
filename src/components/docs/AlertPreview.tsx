@@ -1,22 +1,22 @@
 import * as React from 'react';
 
 function IconCommand({ color = '#A0A0A0' }: { color?: string }) {
-  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M23,18a5,5,0,0,0-5,5v4a5,5,0,1,0,5-5H9a5,5,0,1,0,5,5V23A5,5,0,0,0,9,18H23a5,5,0,0,0,5-5A5,5,0,0,0,23,8V9a5,5,0,1,0,5,5H9A5,5,0,1,0,9,9v4A5,5,0,0,0,9,18Zm0,2a3,3,0,1,1-3,3V20Zm-9-5a3,3,0,1,1,3-3v3Zm0-8a3,3,0,1,1-3,3V7Zm9,5a3,3,0,1,1-3-3h3Z"/></svg>;
+  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M24,13a4,4,0,0,0,4-4V8a4,4,0,0,0-4-4H23a4,4,0,0,0-4,4v3H13V8A4,4,0,0,0,9,4H8A4,4,0,0,0,4,8V9a4,4,0,0,0,4,4h3v6H8a4,4,0,0,0-4,4v1a4,4,0,0,0,4,4H9a4,4,0,0,0,4-4V21h6v3a4,4,0,0,0,4,4h1a4,4,0,0,0,4-4V23a4,4,0,0,0-4-4H21V13ZM21,8a2,2,0,0,1,2-2h1a2,2,0,0,1,2,2V9a2,2,0,0,1-2,2H21ZM8,11A2,2,0,0,1,6,9V8A2,2,0,0,1,8,6H9a2,2,0,0,1,2,2v3H8Zm3,13a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2V23a2,2,0,0,1,2-2h3Zm8-5H13V13h6Zm2,2h3a2,2,0,0,1,2,2v1a2,2,0,0,1-2,2H23a2,2,0,0,1-2-2Z"/></svg>;
 }
 function IconInformation({ color = '#0071FC' }: { color?: string }) {
-  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/><circle cx="16" cy="8" r="1.5"/><path d="M17,13H13v2h2v7H13v2h8v-2H17V13Z"/></svg>;
+  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><polygon points="17 22 17 14 13 14 13 16 15 16 15 22 12 22 12 24 20 24 20 22 17 22"/><path d="M16,8a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,16,8Z"/><path d="M16,30A14,14,0,1,1,30,16,14,14,0,0,1,16,30ZM16,4A12,12,0,1,0,28,16,12,12,0,0,0,16,4Z"/></svg>;
 }
 function IconCheckmark({ color = '#22C55E' }: { color?: string }) {
-  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M14,21.414,9.293,16.707l1.414-1.414L14,18.586,21.293,11.293l1.414,1.414Z"/><path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/></svg>;
+  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><polygon points="14 21.414 9 16.413 10.413 15 14 18.586 21.585 11 23 12.415 14 21.414"/><path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/></svg>;
 }
 function IconWarning({ color = '#E36209' }: { color?: string }) {
-  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/><rect x="15" y="8" width="2" height="12"/><circle cx="16" cy="23" r="1.5"/></svg>;
+  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/><rect x="15" y="8" width="2" height="11"/><path d="M16,22a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,16,22Z"/></svg>;
 }
 function IconClose({ color = '#EF4444' }: { color?: string }) {
-  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/><polygon points="21.4 11.4 20 10 16 14 12 10 10.6 11.4 14.6 15.4 10.6 19.4 12 20.8 16 16.8 20 20.8 21.4 19.4 17.4 15.4 21.4 11.4"/></svg>;
+  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16,2C8.2,2,2,8.2,2,16s6.2,14,14,14s14-6.2,14-14S23.8,2,16,2z M16,28C9.4,28,4,22.6,4,16S9.4,4,16,4s12,5.4,12,12S22.6,28,16,28z"/><polygon points="21.4,23 16,17.6 10.6,23 9,21.4 14.4,16 9,10.6 10.6,9 16,14.4 21.4,9 23,10.6 17.6,16 23,21.4"/></svg>;
 }
 function IconCloseLarge() {
-  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><polygon points="24.6,9.4 23.4,8.2 16,15.6 8.6,8.2 7.4,9.4 14.8,16.8 7.4,24.2 8.6,25.4 16,18 23.4,25.4 24.6,24.2 17.2,16.8"/></svg>;
+  return <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><polygon points="17.4141 16 26 7.4141 24.5859 6 16 14.5859 7.4143 6 6 7.4141 14.5859 16 6 24.5859 7.4143 26 16 17.4141 24.5859 26 26 24.5859 17.4141 16"/></svg>;
 }
 
 interface AlertProps {
