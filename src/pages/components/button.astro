@@ -1,0 +1,436 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import {
+  ButtonPrimary, ButtonSecondary, ButtonOutline, ButtonGhost, ButtonLink,
+  ButtonInfo, ButtonSuccess, ButtonWarning, ButtonDestructive,
+  ButtonLeadingIcon, ButtonTrailingIcon, ButtonIconOnly, ButtonDisabled, ButtonSizes
+} from '../../components/docs/ButtonPreview';
+
+const sections = [
+  { id: 'installation', title: 'Installation' },
+  { id: 'usage', title: 'Usage' },
+  { id: 'examples', title: 'Examples', sub: [
+    { id: 'primary', title: 'Primary' },
+    { id: 'secondary', title: 'Secondary' },
+    { id: 'outline', title: 'Outline' },
+    { id: 'ghost', title: 'Ghost' },
+    { id: 'link', title: 'Link' },
+    { id: 'info', title: 'Info' },
+    { id: 'success', title: 'Success' },
+    { id: 'warning', title: 'Warning' },
+    { id: 'destructive', title: 'Destructive' },
+    { id: 'leading-icon', title: 'With Leading Icon' },
+    { id: 'trailing-icon', title: 'With Trailing Icon' },
+    { id: 'icon-only', title: 'Icon Only' },
+    { id: 'disabled', title: 'Disabled' },
+    { id: 'sizes', title: 'Sizes' },
+  ]},
+  { id: 'anatomy', title: 'Anatomy' },
+  { id: 'props', title: 'Props' },
+];
+---
+
+<DocsLayout title="Button" description="Triggers actions and events." activeComponent="button" sections={sections}>
+
+  <h1 class="font-mono font-medium text-white" style="font-size:20px; line-height:32px; margin-bottom:4px;">Button</h1>
+  <p class="font-mono text-[#A0A0A0]" style="font-size:16px; line-height:24px; font-weight:400; margin-bottom:48px;">Triggers actions and events across the interface.</p>
+
+  <!-- Default preview -->
+  <div id="primary" style="margin-bottom:48px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('default','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('default','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('default', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="default-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonPrimary client:load />
+      </div>
+      <pre id="default-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#55CFFF;">{"<"}Button</span> 
+<span style="color:#55CFFF;">{"/>"}</span></code></pre>
+  </div>
+
+  <!-- Installation -->
+  <section id="installation" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Installation</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden;">
+      <div style="display:flex; align-items:center; border-bottom:1px solid #2A2A2A; padding:0 16px; gap:4px;">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="#A0A0A0" style="margin-right:8px; flex-shrink:0;"><path d="M6 22l8-6-8-6v12zM14 22h12v2H14z"/></svg>
+        <button onclick="setPkg('npx',this)" id="pkg-npx" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">npx</button>
+        <button onclick="setPkg('bun',this)" id="pkg-bun" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer; border-radius:8px;">bun</button>
+        <button onclick="setPkg('pnpm',this)" id="pkg-pnpm" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">pnpm</button>
+        <button onclick="setPkg('yarn',this)" id="pkg-yarn" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">yarn</button>
+        <div style="margin-left:auto;">
+          <button onclick="copyPkg()" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy">
+            <svg id="pkg-icon-copy" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+            <svg id="pkg-icon-check" width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" style="display:none;"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; padding:12px 16px;">
+        <span class="font-mono" style="color:#A0A0A0; font-size:14px; margin-right:16px; user-select:none;">1</span>
+        <code id="pkg-cmd" class="font-mono" style="font-size:14px; line-height:20px;"><span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add button</span></code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section id="usage" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Usage</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden; margin-bottom:8px;">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#A0A0A0; user-select:none; margin-right:16px;">1</span><span style="color:#EF4444;">import</span> <span style="color:#FFFFFF;">{"{"} Button {"}"}</span> <span style="color:#EF4444;">from</span> <span style="color:#22C55E;">"@/components/ui/button"</span></code></pre>
+    </div>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden;">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0;"><code><span style="color:#55CFFF;">{"<"}Button</span> <span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="primary"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+  </section>
+
+  <!-- Examples -->
+  <section id="examples" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:32px;">Examples</h2>
+
+    <div id="primary" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Primary</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">The default high-emphasis button.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('primary','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('primary','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('primary', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="primary-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonPrimary client:load />
+      </div>
+      <pre id="primary-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="primary"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="secondary" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Secondary</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Medium-emphasis button for secondary actions.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('secondary','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('secondary','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('secondary', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="secondary-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonSecondary client:load />
+      </div>
+      <pre id="secondary-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="secondary"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="outline" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Outline</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Low-emphasis button with a visible border.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('outline','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('outline','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('outline', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="outline-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonOutline client:load />
+      </div>
+      <pre id="outline-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="outline"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="ghost" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Ghost</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Minimal button, background appears only on hover.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('ghost','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('ghost','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('ghost', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="ghost-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonGhost client:load />
+      </div>
+      <pre id="ghost-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="ghost"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="link" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Link</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Text-only button, underlines on hover.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('link','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('link','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('link', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="link-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonLink client:load />
+      </div>
+      <pre id="link-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="link"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="info" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Info</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Draws attention for informational actions.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('info','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('info','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('info', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="info-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonInfo client:load />
+      </div>
+      <pre id="info-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="info"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="success" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Success</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Confirms a positive or completed action.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('success','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('success','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('success', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="success-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonSuccess client:load />
+      </div>
+      <pre id="success-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="success"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="warning" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Warning</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Used for actions that need caution.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('warning','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('warning','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('warning', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="warning-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonWarning client:load />
+      </div>
+      <pre id="warning-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"warning"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="destructive" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Destructive</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Used for irreversible or dangerous actions.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('destructive','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('destructive','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('destructive', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="destructive-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonDestructive client:load />
+      </div>
+      <pre id="destructive-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="destructive"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="leading-icon" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Leading Icon</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Icon placed before the label.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('leading_icon','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('leading_icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('leading_icon', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="leading_icon-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonLeadingIcon client:load />
+      </div>
+      <pre id="leading_icon-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">leadingIcon</span><span style="color:#FFFFFF;">={"{"}{"<"}IconCommand /{"}"}</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="trailing-icon" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Trailing Icon</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Icon placed after the label.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('trailing_icon','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('trailing_icon','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('trailing_icon', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="trailing_icon-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonTrailingIcon client:load />
+      </div>
+      <pre id="trailing_icon-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">trailingIcon</span><span style="color:#FFFFFF;">={"{"}{"<"}IconCommand /{"}"}</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <div id="icon-only" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Icon Only</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Compact square button, no visible label.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('icon_only','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('icon_only','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('icon_only', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="icon_only-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonIconOnly client:load />
+      </div>
+      <pre id="icon_only-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">iconOnly</span><span style="color:#FFFFFF;">={"{"}{"<"}IconCommand /{"}"}</span> <span style="color:#6F42C1;">aria-label</span><span style="color:#FFFFFF;">="Command"</span>
+<span style="color:#55CFFF;">{"/>"}</span></code></pre>
+    </div>
+
+    <div id="disabled" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Disabled</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Non-interactive state, reduced emphasis.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('disabled','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('disabled','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('disabled', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="disabled-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonDisabled client:load />
+      </div>
+      <pre id="disabled-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">disabled</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+
+    <!-- Sizes -->
+    <div id="sizes">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Sizes</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Small, Default and Large sizes.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('sizes','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('sizes','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('sizes', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="sizes-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+        <ButtonSizes client:load />
+      </div>
+      <pre id="sizes-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#55CFFF;">{"<"}Button</span> <span style="color:#6F42C1;">size</span><span style="color:#FFFFFF;">="sm"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span>
+<span style="color:#55CFFF;">{"<"}Button</span> <span style="color:#6F42C1;">size</span><span style="color:#FFFFFF;">="default"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span>
+<span style="color:#55CFFF;">{"<"}Button</span> <span style="color:#6F42C1;">size</span><span style="color:#FFFFFF;">="lg"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
+    </div>
+  </section>
+
+  <!-- Anatomy -->
+  <section id="anatomy" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Anatomy</h2>
+    <ul class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; display:flex; flex-direction:column; gap:4px; padding-left:0; list-style:none;">
+      <li><span class="text-white">Button</span> - Root element handling all variants and states</li>
+      <li><span class="text-white">leadingIcon</span> - Optional icon rendered before the label</li>
+      <li><span class="text-white">trailingIcon</span> - Optional icon rendered after the label</li>
+      <li><span class="text-white">iconOnly</span> - Renders a compact square button with no label</li>
+    </ul>
+  </section>
+
+  <!-- Props -->
+  <section id="props">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:24px;">Props</h2>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">Button</h3>
+    <div style="border:1px solid #2A2A2A; border-radius:8px; overflow:hidden;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr style="border-bottom:1px solid #2A2A2A;">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">variant</td><td style="padding:12px 16px; color:#A0A0A0;">'primary' | 'secondary' | 'outline' | 'ghost' | 'link' | 'info' | 'success' | 'warning' | 'destructive'</td><td style="padding:12px 16px; color:#A0A0A0;">'primary'</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">size</td><td style="padding:12px 16px; color:#A0A0A0;">'sm' | 'default' | 'lg'</td><td style="padding:12px 16px; color:#A0A0A0;">'default'</td></tr>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">leadingIcon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">trailingIcon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">iconOnly</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr><td style="padding:12px 16px; color:#55CFFF;">disabled</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</DocsLayout>
+
+<style>
+  .preview-box { padding: 32px 60px; }
+  .code-block { padding: 24px !important; }
+  .copy-btn:hover { color: #FFFFFF !important; }
+  @media (max-width: 1024px) {
+    .preview-box { padding: 24px !important; }
+  }
+</style>
+
+<script>
+  var pkgCmds = {
+    npx:  { cmd: 'npx mono add button', html: '<span style="color:#EF4444;">npx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">button</span>' },
+    bun:  { cmd: 'bunx mono add button', html: '<span style="color:#EF4444;">bunx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">button</span>' },
+    pnpm: { cmd: 'pnpm dlx mono add button', html: '<span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add button</span>' },
+    yarn: { cmd: 'yarn dlx mono add button', html: '<span style="color:#EF4444;">yarn</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add button</span>' },
+  };
+  var activePkg = 'bun';
+
+  function setPkg(pkg, btn) {
+    activePkg = pkg;
+    document.getElementById('pkg-cmd').innerHTML = pkgCmds[pkg].html;
+    ['npx','bun','pnpm','yarn'].forEach(function(p) {
+      var b = document.getElementById('pkg-' + p);
+      if (p === pkg) { b.style.background = '#2A2A2A'; b.style.color = '#FFFFFF'; }
+      else { b.style.background = 'transparent'; b.style.color = '#A0A0A0'; }
+    });
+  }
+
+  function copyPkg() {
+    navigator.clipboard.writeText(pkgCmds[activePkg].cmd).then(function() {
+      document.getElementById('pkg-icon-copy').style.display = 'none';
+      document.getElementById('pkg-icon-check').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('pkg-icon-copy').style.display = 'block';
+        document.getElementById('pkg-icon-check').style.display = 'none';
+      }, 2000);
+    });
+  }
+
+  function show(section, tab, btn) {
+    var preview = document.getElementById(section + '-preview');
+    var code = document.getElementById(section + '-code');
+    var parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(function(b) {
+      b.style.background = 'transparent';
+      b.style.color = '#A0A0A0';
+    });
+    btn.style.background = '#2A2A2A';
+    btn.style.color = '#FFFFFF';
+    if (tab === 'preview') {
+      preview.classList.remove('hidden');
+      code.classList.add('hidden');
+    } else {
+      preview.classList.add('hidden');
+      code.classList.remove('hidden');
+    }
+  }
+
+  function copySection(section, btn) {
+    var codeEl = document.getElementById(section + '-code');
+    if (!codeEl) return;
+    navigator.clipboard.writeText(codeEl.innerText.trim()).then(function() {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>';
+      setTimeout(function() { btn.innerHTML = orig; }, 2000);
+    });
+  }
+
+  window.setPkg = setPkg;
+  window.copyPkg = copyPkg;
+  window.show = show;
+  window.copySection = copySection;
+</script>
