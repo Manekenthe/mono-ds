@@ -44,7 +44,7 @@ const sections = [
         </div>
         <button onclick="copySection('default', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="default-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="default-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonPrimary client:load />
       </div>
       <pre id="default-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#55CFFF;">{"<"}Button</span> 
@@ -106,7 +106,7 @@ const sections = [
         </div>
         <button onclick="copySection('primary', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="primary-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="primary-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonPrimary client:load />
       </div>
       <pre id="primary-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="primary"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -122,7 +122,7 @@ const sections = [
         </div>
         <button onclick="copySection('secondary', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="secondary-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="secondary-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonSecondary client:load />
       </div>
       <pre id="secondary-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="secondary"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -138,7 +138,7 @@ const sections = [
         </div>
         <button onclick="copySection('outline', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="outline-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="outline-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonOutline client:load />
       </div>
       <pre id="outline-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="outline"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -154,7 +154,7 @@ const sections = [
         </div>
         <button onclick="copySection('ghost', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="ghost-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="ghost-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonGhost client:load />
       </div>
       <pre id="ghost-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="ghost"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -170,7 +170,7 @@ const sections = [
         </div>
         <button onclick="copySection('link', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="link-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="link-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonLink client:load />
       </div>
       <pre id="link-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="link"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -186,7 +186,7 @@ const sections = [
         </div>
         <button onclick="copySection('info', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="info-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="info-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonInfo client:load />
       </div>
       <pre id="info-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="info"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -202,7 +202,7 @@ const sections = [
         </div>
         <button onclick="copySection('success', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="success-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="success-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonSuccess client:load />
       </div>
       <pre id="success-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="success"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -218,7 +218,7 @@ const sections = [
         </div>
         <button onclick="copySection('warning', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="warning-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="warning-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonWarning client:load />
       </div>
       <pre id="warning-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"warning"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -234,7 +234,7 @@ const sections = [
         </div>
         <button onclick="copySection('destructive', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="destructive-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="destructive-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonDestructive client:load />
       </div>
       <pre id="destructive-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">variant</span><span style="color:#FFFFFF;">="destructive"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -250,7 +250,7 @@ const sections = [
         </div>
         <button onclick="copySection('leading_icon', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="leading_icon-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="leading_icon-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonLeadingIcon client:load />
       </div>
       <pre id="leading_icon-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">leadingIcon</span><span style="color:#FFFFFF;">={"{"}{"<"}IconCommand /{"}"}</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -266,7 +266,7 @@ const sections = [
         </div>
         <button onclick="copySection('trailing_icon', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="trailing_icon-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="trailing_icon-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonTrailingIcon client:load />
       </div>
       <pre id="trailing_icon-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">trailingIcon</span><span style="color:#FFFFFF;">={"{"}{"<"}IconCommand /{"}"}</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -282,7 +282,7 @@ const sections = [
         </div>
         <button onclick="copySection('icon_only', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="icon_only-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="icon_only-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonIconOnly client:load />
       </div>
       <pre id="icon_only-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">iconOnly</span><span style="color:#FFFFFF;">={"{"}{"<"}IconCommand /{"}"}</span> <span style="color:#6F42C1;">aria-label</span><span style="color:#FFFFFF;">="Command"</span>
@@ -299,7 +299,7 @@ const sections = [
         </div>
         <button onclick="copySection('disabled', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="disabled-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="disabled-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonDisabled client:load />
       </div>
       <pre id="disabled-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#6F42C1;">disabled</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span></code></pre>
@@ -316,7 +316,7 @@ const sections = [
         </div>
         <button onclick="copySection('sizes', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
       </div>
-      <div id="sizes-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px;">
+      <div id="sizes-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
         <ButtonSizes client:load />
       </div>
       <pre id="sizes-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; white-space:pre-wrap; word-break:break-word;"><code><span style="color:#55CFFF;">{"<"}Button</span> <span style="color:#6F42C1;">size</span><span style="color:#FFFFFF;">="sm"</span><span style="color:#55CFFF;">{">"}</span>Button<span style="color:#55CFFF;">{"<"}/Button{">"}</span>
