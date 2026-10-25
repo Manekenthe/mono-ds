@@ -29,12 +29,12 @@ interface AlertProps {
   actions?: boolean;
 }
 
-const toneStyles: Record<string, { bg: string; border: string }> = {
-  default: { bg: '#1A1A1A', border: '#2A2A2A' },
-  info:    { bg: '#11171E', border: '#0071FC' },
-  success: { bg: '#131B16', border: '#22C55E' },
-  warning: { bg: '#1C1612', border: '#E36209' },
-  error:   { bg: '#1D1515', border: '#EF4444' },
+const toneStyles: Record<string, { bg: string; border: string; icon: string }> = {
+  default: { bg: '#1A1A1A', border: '#2A2A2A', icon: '#A0A0A0' },
+  info:    { bg: '#11171E', border: '#0071FC', icon: '#0071FC' },
+  success: { bg: '#131B16', border: '#22C55E', icon: '#22C55E' },
+  warning: { bg: '#1C1612', border: '#E36209', icon: '#E36209' },
+  error:   { bg: '#1D1515', border: '#EF4444', icon: '#EF4444' },
 };
 
 export function Alert({ tone = 'default', icon, title, description, list, closable, actions }: AlertProps) {
@@ -51,7 +51,7 @@ export function Alert({ tone = 'default', icon, title, description, list, closab
       position: 'relative',
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: icon ? '8px' : '0' }}>
-        {icon && <span style={{ display: 'flex', flexShrink: 0 }}>{icon}</span>}
+        {icon && <span style={{ display: 'flex', flexShrink: 0, color: style.icon }}>{icon}</span>}
         <span className="font-mono font-medium" style={{ fontSize: '14px', lineHeight: '20px', color: '#FFFFFF' }}>{title}</span>
         {closable && (
           <button
