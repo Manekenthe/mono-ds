@@ -1,0 +1,533 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import {
+  BadgeDefault,
+  BadgeSecondary,
+  BadgeDestructive,
+  BadgeDestructiveLight,
+  BadgeSuccess,
+  BadgeSuccessLight,
+  BadgeInfo,
+  BadgeInfoLight,
+  BadgeWarning,
+  BadgeWarningLight,
+  BadgeOutline,
+  BadgeSizes,
+  BadgeLeadingIcon,
+  BadgeTrailingIcon,
+  BadgeAvatar,
+  BadgePills
+} from '../../components/docs/BadgePreview';
+
+const sections = [
+  {
+    "id": "installation",
+    "title": "Installation"
+  },
+  {
+    "id": "usage",
+    "title": "Usage"
+  },
+  {
+    "id": "examples",
+    "title": "Examples",
+    "sub": [
+      {
+        "id": "default",
+        "title": "Default Badge"
+      },
+      {
+        "id": "secondary",
+        "title": "Secondary"
+      },
+      {
+        "id": "destructive",
+        "title": "Destructive"
+      },
+      {
+        "id": "destructive-light",
+        "title": "Destructive Light"
+      },
+      {
+        "id": "success",
+        "title": "Success"
+      },
+      {
+        "id": "success-light",
+        "title": "Success Light"
+      },
+      {
+        "id": "info",
+        "title": "Info"
+      },
+      {
+        "id": "info-light",
+        "title": "Info Light"
+      },
+      {
+        "id": "warning",
+        "title": "Warning"
+      },
+      {
+        "id": "warning-light",
+        "title": "Warning Light"
+      },
+      {
+        "id": "outline",
+        "title": "Outline"
+      },
+      {
+        "id": "sizes",
+        "title": "Sizes"
+      },
+      {
+        "id": "leading-icon",
+        "title": "With Leading Icon"
+      },
+      {
+        "id": "trailing-icon",
+        "title": "With Trailing Icon"
+      },
+      {
+        "id": "with-avatar",
+        "title": "With Avatar"
+      },
+      {
+        "id": "pills",
+        "title": "Full Radius (Pills)"
+      }
+    ]
+  },
+  {
+    "id": "anatomy",
+    "title": "Anatomy"
+  },
+  {
+    "id": "props",
+    "title": "Props"
+  }
+];
+---
+
+<DocsLayout title="Badge" description="Small label for status, categories and counts." activeComponent="badge" sections={sections}>
+
+  <h1 class="font-mono font-medium text-white" style="font-size:20px; line-height:32px; margin-bottom:4px;">Badge</h1>
+  <p class="font-mono text-[#A0A0A0]" style="font-size:16px; line-height:24px; font-weight:400; margin-bottom:48px;">A small label that highlights a status, a category or a count.</p>
+
+  <div id="default" style="margin-bottom:48px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('t0','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('t0','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('t0', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="t0-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeDefault client:load />
+      </div>
+      <pre id="t0-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+  </div>
+
+  <section id="installation" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Installation</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden;">
+      <div style="display:flex; align-items:center; border-bottom:1px solid #2A2A2A; padding:0 16px; gap:4px;">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="#A0A0A0" style="margin-right:8px; flex-shrink:0;"><path d="M6 22l8-6-8-6v12zM14 22h12v2H14z"/></svg>
+        <button onclick="setPkg('npx',this)" id="pkg-npx" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">npx</button>
+        <button onclick="setPkg('bun',this)" id="pkg-bun" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer; border-radius:8px;">bun</button>
+        <button onclick="setPkg('pnpm',this)" id="pkg-pnpm" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">pnpm</button>
+        <button onclick="setPkg('yarn',this)" id="pkg-yarn" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">yarn</button>
+        <div style="margin-left:auto;">
+          <button onclick="copyPkg()" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy">
+            <svg id="pkg-icon-copy" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+            <svg id="pkg-icon-check" width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" style="display:none;"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; padding:12px 16px;">
+        <span class="font-mono" style="color:#A0A0A0; font-size:14px; margin-right:16px; user-select:none;">1</span>
+        <code id="pkg-cmd" class="font-mono" style="font-size:14px; line-height:20px;"><span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add badge</span></code>
+      </div>
+    </div>
+  </section>
+
+  <section id="usage" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Usage</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden; margin-bottom:8px;">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0; color:#FFFFFF;"><code><span style="color:#A0A0A0; user-select:none; margin-right:16px;">1</span><span style="color:#EF4444;">import</span> &#123; Badge &#125; <span style="color:#EF4444;">from</span> <span style="color:#22C55E;">"@/components/ui/badge"</span></code></pre>
+    </div>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden; ">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"success"</span> <span style="color:#6F42C1;">light</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+  </section>
+
+  <section id="examples" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:32px;">Examples</h2>
+
+    <div id="secondary" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Secondary</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Low-emphasis badge on a neutral background.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('secondary_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('secondary_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('secondary_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="secondary_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeSecondary client:load />
+      </div>
+      <pre id="secondary_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"secondary"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="destructive" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Destructive</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Marks errors, failures or dangerous items.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('destructive_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('destructive_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('destructive_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="destructive_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeDestructive client:load />
+      </div>
+      <pre id="destructive_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"destructive"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="destructive-light" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Destructive Light</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Softer version with a tinted background and a colored stroke.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('destructive_light_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('destructive_light_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('destructive_light_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="destructive_light_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeDestructiveLight client:load />
+      </div>
+      <pre id="destructive_light_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"destructive"</span> <span style="color:#6F42C1;">light</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="success" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Success</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Marks completed or healthy states.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('success_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('success_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('success_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="success_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeSuccess client:load />
+      </div>
+      <pre id="success_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"success"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="success-light" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Success Light</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Softer version with a tinted background and a colored stroke.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('success_light_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('success_light_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('success_light_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="success_light_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeSuccessLight client:load />
+      </div>
+      <pre id="success_light_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"success"</span> <span style="color:#6F42C1;">light</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="info" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Info</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Marks neutral, informational items.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('info_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('info_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('info_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="info_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeInfo client:load />
+      </div>
+      <pre id="info_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"info"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="info-light" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Info Light</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Softer version with a tinted background and a colored stroke.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('info_light_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('info_light_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('info_light_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="info_light_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeInfoLight client:load />
+      </div>
+      <pre id="info_light_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"info"</span> <span style="color:#6F42C1;">light</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="warning" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Warning</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Marks items that need attention.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('warning_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('warning_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('warning_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="warning_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeWarning client:load />
+      </div>
+      <pre id="warning_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"warning"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="warning-light" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Warning Light</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Softer version with a tinted background and a colored stroke.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('warning_light_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('warning_light_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('warning_light_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="warning_light_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeWarningLight client:load />
+      </div>
+      <pre id="warning_light_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"warning"</span> <span style="color:#6F42C1;">light</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="outline" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Outline</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Subtle badge with a 1px border.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('outline_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('outline_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('outline_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="outline_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeOutline client:load />
+      </div>
+      <pre id="outline_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"outline"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="sizes" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Sizes</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Use the size prop for small, medium (default) and large badges.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('sizes_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('sizes_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('sizes_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="sizes_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeSizes client:load />
+      </div>
+      <pre id="sizes_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">size</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"sm"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">size</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"md"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">size</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"lg"</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="leading-icon" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Leading Icon</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Place an icon before the label.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('leading_icon_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('leading_icon_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('leading_icon_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="leading_icon_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeLeadingIcon client:load />
+      </div>
+      <pre id="leading_icon_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"outline"</span> <span style="color:#6F42C1;">leadingIcon</span><span style="color:#E36209;">=</span>&#123;<span style="color:#55CFFF;">&lt;IconCommand</span> <span style="color:#55CFFF;">/&gt;</span>&#125;<span style="color:#55CFFF;">&gt;</span>
+  Badge
+<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="trailing-icon" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Trailing Icon</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Place an icon after the label.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('trailing_icon_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('trailing_icon_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('trailing_icon_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="trailing_icon_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeTrailingIcon client:load />
+      </div>
+      <pre id="trailing_icon_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"outline"</span> <span style="color:#6F42C1;">trailingIcon</span><span style="color:#E36209;">=</span>&#123;<span style="color:#55CFFF;">&lt;IconCommand</span> <span style="color:#55CFFF;">/&gt;</span>&#125;<span style="color:#55CFFF;">&gt;</span>
+  Badge
+<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="with-avatar" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Avatar</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Combine an avatar with a trailing close icon, for example for selected people.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_avatar_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_avatar_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_avatar_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="with_avatar_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgeAvatar client:load />
+      </div>
+      <pre id="with_avatar_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span>
+  <span style="color:#6F42C1;">variant</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"outline"</span>
+  <span style="color:#6F42C1;">leadingIcon</span><span style="color:#E36209;">=</span>&#123;<span style="color:#55CFFF;">&lt;Avatar</span> <span style="color:#6F42C1;">src</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/avatars/photo.jpg"</span> <span style="color:#6F42C1;">size</span><span style="color:#E36209;">=</span>&#123;14&#125; <span style="color:#55CFFF;">/&gt;</span>&#125;
+  <span style="color:#6F42C1;">trailingIcon</span><span style="color:#E36209;">=</span>&#123;<span style="color:#55CFFF;">&lt;IconClose</span> <span style="color:#55CFFF;">/&gt;</span>&#125;
+<span style="color:#55CFFF;">&gt;</span>
+  Badge
+<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="pills" style="margin-bottom:0px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">Full Radius (Pills)</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Use pill for fully rounded badges. A single character becomes a circle, handy for counts.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('pills_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('pills_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('pills_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="pills_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BadgePills client:load />
+      </div>
+      <pre id="pills_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">pill</span><span style="color:#55CFFF;">&gt;</span>Badge<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;Badge</span> <span style="color:#6F42C1;">pill</span><span style="color:#55CFFF;">&gt;</span>7<span style="color:#55CFFF;">&lt;/Badge</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+  </section>
+
+  <section id="anatomy" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Anatomy</h2>
+    <ul class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; display:flex; flex-direction:column; gap:4px; padding-left:0; list-style:none;">
+      <li><span class="text-white">Badge</span> - Root element that sets the color, size and radius</li>
+      <li><span class="text-white">leadingIcon</span> - Optional icon or avatar before the label</li>
+      <li><span class="text-white">Label</span> - Short text, or a single character for counts</li>
+      <li><span class="text-white">trailingIcon</span> - Optional icon after the label, for example a close icon</li>
+    </ul>
+  </section>
+
+  <section id="props">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:24px;">Props</h2>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">Badge</h3>
+    <div style="border:1px solid #2A2A2A; border-radius:8px; overflow:hidden; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr style="border-bottom:1px solid #2A2A2A;">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">variant</td><td style="padding:12px 16px; color:#A0A0A0;">'default' | 'secondary' | 'outline' | 'destructive' | 'success' | 'info' | 'warning'</td><td style="padding:12px 16px; color:#A0A0A0;">'default'</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">light</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">size</td><td style="padding:12px 16px; color:#A0A0A0;">'sm' | 'md' | 'lg'</td><td style="padding:12px 16px; color:#A0A0A0;">'md'</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">pill</td><td style="padding:12px 16px; color:#A0A0A0;">boolean</td><td style="padding:12px 16px; color:#A0A0A0;">false</td></tr>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">leadingIcon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">trailingIcon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</DocsLayout>
+
+<style>
+  .preview-box { padding: 32px 60px; }
+  .code-block { padding: 24px !important; }
+  .copy-btn:hover { color: #FFFFFF !important; }
+  @media (max-width: 1024px) {
+    .preview-box { padding: 24px !important; }
+  }
+</style>
+
+<script>
+  var pkgCmds = {
+    npx:  { cmd: 'npx mono add badge', html: '<span style="color:#EF4444;">npx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">badge</span>' },
+    bun:  { cmd: 'bunx mono add badge', html: '<span style="color:#EF4444;">bunx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">badge</span>' },
+    pnpm: { cmd: 'pnpm dlx mono add badge', html: '<span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add badge</span>' },
+    yarn: { cmd: 'yarn dlx mono add badge', html: '<span style="color:#EF4444;">yarn</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add badge</span>' },
+  };
+  var activePkg = 'bun';
+
+  function setPkg(pkg, btn) {
+    activePkg = pkg;
+    document.getElementById('pkg-cmd').innerHTML = pkgCmds[pkg].html;
+    ['npx','bun','pnpm','yarn'].forEach(function(p) {
+      var b = document.getElementById('pkg-' + p);
+      if (p === pkg) { b.style.background = '#2A2A2A'; b.style.color = '#FFFFFF'; }
+      else { b.style.background = 'transparent'; b.style.color = '#A0A0A0'; }
+    });
+  }
+
+  function copyPkg() {
+    navigator.clipboard.writeText(pkgCmds[activePkg].cmd).then(function() {
+      document.getElementById('pkg-icon-copy').style.display = 'none';
+      document.getElementById('pkg-icon-check').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('pkg-icon-copy').style.display = 'block';
+        document.getElementById('pkg-icon-check').style.display = 'none';
+      }, 2000);
+    });
+  }
+
+  function show(section, tab, btn) {
+    var preview = document.getElementById(section + '-preview');
+    var code = document.getElementById(section + '-code');
+    var parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(function(b) {
+      b.style.background = 'transparent';
+      b.style.color = '#A0A0A0';
+    });
+    btn.style.background = '#2A2A2A';
+    btn.style.color = '#FFFFFF';
+    if (tab === 'preview') {
+      preview.classList.remove('hidden');
+      code.classList.add('hidden');
+    } else {
+      preview.classList.add('hidden');
+      code.classList.remove('hidden');
+    }
+  }
+
+  function copySection(section, btn) {
+    var codeEl = document.getElementById(section + '-code');
+    if (!codeEl) return;
+    navigator.clipboard.writeText(codeEl.innerText.trim()).then(function() {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>';
+      setTimeout(function() { btn.innerHTML = orig; }, 2000);
+    });
+  }
+
+  window.setPkg = setPkg;
+  window.copyPkg = copyPkg;
+  window.show = show;
+  window.copySection = copySection;
+</script>
