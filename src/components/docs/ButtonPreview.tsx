@@ -73,7 +73,9 @@ export function Button({
         gap: (leadingIcon || trailingIcon) ? '8px' : '0',
         background: hover && !disabled ? v.bgHover : v.bg,
         color: v.color,
-        border: v.border ? `1px solid ${v.border}` : 'none',
+        border: 'none',
+        // 1px stroke centered on the edge (0.5px outside + 0.5px inside), does not change the size
+        boxShadow: v.border ? `0 0 0 0.5px ${v.border}, inset 0 0 0 0.5px ${v.border}` : undefined,
         borderRadius: '8px',
         padding: isIconOnly ? '8px' : `${s.padY} ${s.padX}`,
         fontSize: s.fontSize,
