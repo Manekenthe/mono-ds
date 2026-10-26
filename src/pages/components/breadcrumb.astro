@@ -1,0 +1,384 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import {
+  BreadcrumbBasic,
+  BreadcrumbWithDropdown,
+  BreadcrumbWithSlash,
+  BreadcrumbWithIcon
+} from '../../components/docs/BreadcrumbPreview';
+
+const sections = [
+  {
+    "id": "installation",
+    "title": "Installation"
+  },
+  {
+    "id": "usage",
+    "title": "Usage"
+  },
+  {
+    "id": "examples",
+    "title": "Examples",
+    "sub": [
+      {
+        "id": "basic",
+        "title": "Basic Breadcrumb"
+      },
+      {
+        "id": "with-dropdown",
+        "title": "With Dropdown"
+      },
+      {
+        "id": "with-slash",
+        "title": "With Slash Separator"
+      },
+      {
+        "id": "with-icon",
+        "title": "With Icon"
+      }
+    ]
+  },
+  {
+    "id": "anatomy",
+    "title": "Anatomy"
+  },
+  {
+    "id": "props",
+    "title": "Props"
+  }
+];
+---
+
+<DocsLayout title="Breadcrumb" description="Hierarchical navigation path." activeComponent="breadcrumb" sections={sections}>
+
+  <h1 class="font-mono font-medium text-white" style="font-size:20px; line-height:32px; margin-bottom:4px;">Breadcrumb</h1>
+  <p class="font-mono text-[#A0A0A0]" style="font-size:16px; line-height:24px; font-weight:400; margin-bottom:48px;">Shows where the user is in a hierarchy and lets them go back up.</p>
+
+  <div id="basic" style="margin-bottom:48px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('t0','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('t0','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('t0', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="t0-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BreadcrumbBasic client:load />
+      </div>
+      <pre id="t0-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Breadcrumb</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/"</span><span style="color:#55CFFF;">&gt;</span>Home<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/components"</span><span style="color:#55CFFF;">&gt;</span>Components<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>Breadcrumb<span style="color:#55CFFF;">&lt;/BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;/BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;/Breadcrumb</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+  </div>
+
+  <section id="installation" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Installation</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden;">
+      <div style="display:flex; align-items:center; border-bottom:1px solid #2A2A2A; padding:0 16px; gap:4px;">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="#A0A0A0" style="margin-right:8px; flex-shrink:0;"><path d="M6 22l8-6-8-6v12zM14 22h12v2H14z"/></svg>
+        <button onclick="setPkg('npx',this)" id="pkg-npx" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">npx</button>
+        <button onclick="setPkg('bun',this)" id="pkg-bun" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer; border-radius:8px;">bun</button>
+        <button onclick="setPkg('pnpm',this)" id="pkg-pnpm" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">pnpm</button>
+        <button onclick="setPkg('yarn',this)" id="pkg-yarn" class="font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; background:transparent; color:#A0A0A0; border:none; cursor:pointer; border-radius:8px;">yarn</button>
+        <div style="margin-left:auto;">
+          <button onclick="copyPkg()" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy">
+            <svg id="pkg-icon-copy" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg>
+            <svg id="pkg-icon-check" width="16" height="16" viewBox="0 0 32 32" fill="#22C55E" style="display:none;"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; padding:12px 16px;">
+        <span class="font-mono" style="color:#A0A0A0; font-size:14px; margin-right:16px; user-select:none;">1</span>
+        <code id="pkg-cmd" class="font-mono" style="font-size:14px; line-height:20px;"><span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add breadcrumb</span></code>
+      </div>
+    </div>
+  </section>
+
+  <section id="usage" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Usage</h2>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden; margin-bottom:8px;">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0; color:#FFFFFF;"><code><span style="color:#A0A0A0; user-select:none; margin-right:16px;">1</span><span style="color:#EF4444;">import</span> &#123;
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">2</span>  Breadcrumb,
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">3</span>  BreadcrumbEllipsis,
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">4</span>  BreadcrumbItem,
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">5</span>  BreadcrumbLink,
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">6</span>  BreadcrumbList,
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">7</span>  BreadcrumbPage,
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">8</span>  BreadcrumbSeparator,
+<span style="color:#A0A0A0; user-select:none; margin-right:16px;">9</span>&#125; <span style="color:#EF4444;">from</span> <span style="color:#22C55E;">"@/components/ui/breadcrumb"</span></code></pre>
+    </div>
+    <div style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; overflow:hidden; ">
+      <div style="display:flex; justify-content:flex-end; border-bottom:1px solid #2A2A2A; padding:8px 16px;">
+        <button class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <pre class="font-mono overflow-x-auto" style="padding:20px 24px; font-size:14px; line-height:20px; margin:0; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Breadcrumb</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/"</span><span style="color:#55CFFF;">&gt;</span>Home<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/components"</span><span style="color:#55CFFF;">&gt;</span>Components<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>Breadcrumb<span style="color:#55CFFF;">&lt;/BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;/BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;/Breadcrumb</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+  </section>
+
+  <section id="examples" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:32px;">Examples</h2>
+
+    <div id="with-dropdown" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Dropdown</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Collapse the middle of a long path behind an overflow button.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_dropdown_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_dropdown_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_dropdown_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="with_dropdown_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BreadcrumbWithDropdown client:load />
+      </div>
+      <pre id="with_dropdown_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Breadcrumb</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/"</span><span style="color:#55CFFF;">&gt;</span>Home<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbEllipsis</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/components"</span><span style="color:#55CFFF;">&gt;</span>Components<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>Breadcrumb<span style="color:#55CFFF;">&lt;/BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;/BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;/Breadcrumb</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="with-slash" style="margin-bottom:48px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Slash Separator</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Pass any children to BreadcrumbSeparator to replace the chevron.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_slash_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_slash_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_slash_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="with_slash_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BreadcrumbWithSlash client:load />
+      </div>
+      <pre id="with_slash_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Breadcrumb</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/"</span><span style="color:#55CFFF;">&gt;</span>Home<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span><span style="color:#55CFFF;">&gt;</span>/<span style="color:#55CFFF;">&lt;/BreadcrumbSeparator</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/components"</span><span style="color:#55CFFF;">&gt;</span>Components<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span><span style="color:#55CFFF;">&gt;</span>/<span style="color:#55CFFF;">&lt;/BreadcrumbSeparator</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>Breadcrumb<span style="color:#55CFFF;">&lt;/BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;/BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;/Breadcrumb</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+
+    <div id="with-icon" style="margin-bottom:0px;">
+      <h3 class="font-mono font-medium text-white" style="font-size:14px; line-height:20px; margin-bottom:4px;">With Icon</h3>
+      <p class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; margin-bottom:16px;">Add an icon to a link or to the current page with the icon prop.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; gap:4px;">
+          <button onclick="show('with_icon_x','preview',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:#2A2A2A; color:#FFFFFF; border:none; cursor:pointer;">Preview</button>
+          <button onclick="show('with_icon_x','code',this)" class="preview-tab font-mono font-medium" style="font-size:14px; line-height:20px; padding:8px 12px; border-radius:8px; background:transparent; color:#A0A0A0; border:none; cursor:pointer;">Code</button>
+        </div>
+        <button onclick="copySection('with_icon_x', this)" class="copy-btn" style="color:#A0A0A0; background:none; border:none; cursor:pointer; display:flex; padding:0;" aria-label="Copy"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28,10V28H10V10H28m0-2H10a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2Z"/><path d="M4,18H2V4A2,2,0,0,1,4,2H18V4H4Z"/></svg></button>
+      </div>
+      <div id="with_icon_x-preview" class="preview-box" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <BreadcrumbWithIcon client:load />
+      </div>
+      <pre id="with_icon_x-code" class="hidden code-block font-mono overflow-x-auto" style="border:1px solid #2A2A2A; background:#121212; border-radius:8px; font-size:14px; line-height:20px; margin:0; padding:24px; color:#FFFFFF;"><code><span style="color:#55CFFF;">&lt;Breadcrumb</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/"</span> <span style="color:#6F42C1;">icon</span><span style="color:#E36209;">=</span>&#123;<span style="color:#55CFFF;">&lt;IconHome</span> <span style="color:#55CFFF;">/&gt;</span>&#125;<span style="color:#55CFFF;">&gt;</span>Home<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbLink</span> <span style="color:#6F42C1;">href</span><span style="color:#E36209;">=</span><span style="color:#FFFFFF;">"/projects"</span> <span style="color:#6F42C1;">icon</span><span style="color:#E36209;">=</span>&#123;<span style="color:#55CFFF;">&lt;IconFolder</span> <span style="color:#55CFFF;">/&gt;</span>&#125;<span style="color:#55CFFF;">&gt;</span>Projects<span style="color:#55CFFF;">&lt;/BreadcrumbLink</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbSeparator</span> <span style="color:#55CFFF;">/&gt;</span>
+    <span style="color:#55CFFF;">&lt;BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+      <span style="color:#55CFFF;">&lt;BreadcrumbPage</span> <span style="color:#6F42C1;">icon</span><span style="color:#E36209;">=</span>&#123;<span style="color:#55CFFF;">&lt;IconChartPie</span> <span style="color:#55CFFF;">/&gt;</span>&#125;<span style="color:#55CFFF;">&gt;</span>Reports<span style="color:#55CFFF;">&lt;/BreadcrumbPage</span><span style="color:#55CFFF;">&gt;</span>
+    <span style="color:#55CFFF;">&lt;/BreadcrumbItem</span><span style="color:#55CFFF;">&gt;</span>
+  <span style="color:#55CFFF;">&lt;/BreadcrumbList</span><span style="color:#55CFFF;">&gt;</span>
+<span style="color:#55CFFF;">&lt;/Breadcrumb</span><span style="color:#55CFFF;">&gt;</span></code></pre>
+    </div>
+  </section>
+
+  <section id="anatomy" style="margin-bottom:48px;">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:16px;">Anatomy</h2>
+    <ul class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; display:flex; flex-direction:column; gap:4px; padding-left:0; list-style:none;">
+      <li><span class="text-white">Breadcrumb</span> - Root nav element, labelled for assistive technology</li>
+      <li><span class="text-white">BreadcrumbList</span> - Ordered list that lays items out with an 8px gap</li>
+      <li><span class="text-white">BreadcrumbItem</span> - Wrapper for a single link or the current page</li>
+      <li><span class="text-white">BreadcrumbLink</span> - Link to a parent level, white on hover</li>
+      <li><span class="text-white">BreadcrumbPage</span> - The current page, white and not clickable</li>
+      <li><span class="text-white">BreadcrumbSeparator</span> - Chevron by default, or any children such as a slash</li>
+      <li><span class="text-white">BreadcrumbEllipsis</span> - Overflow button that stands in for hidden items</li>
+    </ul>
+  </section>
+
+  <section id="props">
+    <h2 class="font-mono font-medium text-white" style="font-size:18px; line-height:32px; margin-bottom:24px;">Props</h2>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">BreadcrumbLink</h3>
+    <div style="border:1px solid #2A2A2A; border-radius:8px; overflow:hidden; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr style="border-bottom:1px solid #2A2A2A;">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">href</td><td style="padding:12px 16px; color:#A0A0A0;">string</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+          <tr style="border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">icon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">BreadcrumbPage</h3>
+    <div style="border:1px solid #2A2A2A; border-radius:8px; overflow:hidden; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr style="border-bottom:1px solid #2A2A2A;">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">icon</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">BreadcrumbSeparator</h3>
+    <div style="border:1px solid #2A2A2A; border-radius:8px; overflow:hidden; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr style="border-bottom:1px solid #2A2A2A;">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">children</td><td style="padding:12px 16px; color:#A0A0A0;">ReactNode</td><td style="padding:12px 16px; color:#A0A0A0;">chevron icon</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="font-mono font-medium text-[#A0A0A0]" style="font-size:12px; line-height:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">BreadcrumbEllipsis</h3>
+    <div style="border:1px solid #2A2A2A; border-radius:8px; overflow:hidden; margin-bottom:24px;">
+      <table class="w-full font-mono" style="font-size:12px; line-height:20px; border-collapse:collapse;">
+        <thead><tr style="border-bottom:1px solid #2A2A2A;">
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Prop</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Type</th>
+          <th class="text-left text-[#A0A0A0] font-medium" style="padding:12px 16px;">Default</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#1A1A1A; border-bottom:1px solid #2A2A2A;"><td style="padding:12px 16px; color:#55CFFF;">onClick</td><td style="padding:12px 16px; color:#A0A0A0;">() =&gt; void</td><td style="padding:12px 16px; color:#A0A0A0;">undefined</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</DocsLayout>
+
+<style>
+  .preview-box { padding: 32px 60px; }
+  .code-block { padding: 24px !important; }
+  .copy-btn:hover { color: #FFFFFF !important; }
+  @media (max-width: 1024px) {
+    .preview-box { padding: 24px !important; }
+  }
+</style>
+
+<script>
+  var pkgCmds = {
+    npx:  { cmd: 'npx mono add breadcrumb', html: '<span style="color:#EF4444;">npx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">breadcrumb</span>' },
+    bun:  { cmd: 'bunx mono add breadcrumb', html: '<span style="color:#EF4444;">bunx</span> <span style="color:#22C55E;">mono</span> <span style="color:#55CFFF;">add</span> <span style="color:#FFFFFF;">breadcrumb</span>' },
+    pnpm: { cmd: 'pnpm dlx mono add breadcrumb', html: '<span style="color:#EF4444;">pnpm</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add breadcrumb</span>' },
+    yarn: { cmd: 'yarn dlx mono add breadcrumb', html: '<span style="color:#EF4444;">yarn</span> <span style="color:#22C55E;">dlx</span> <span style="color:#55CFFF;">mono</span> <span style="color:#FFFFFF;">add breadcrumb</span>' },
+  };
+  var activePkg = 'bun';
+
+  function setPkg(pkg, btn) {
+    activePkg = pkg;
+    document.getElementById('pkg-cmd').innerHTML = pkgCmds[pkg].html;
+    ['npx','bun','pnpm','yarn'].forEach(function(p) {
+      var b = document.getElementById('pkg-' + p);
+      if (p === pkg) { b.style.background = '#2A2A2A'; b.style.color = '#FFFFFF'; }
+      else { b.style.background = 'transparent'; b.style.color = '#A0A0A0'; }
+    });
+  }
+
+  function copyPkg() {
+    navigator.clipboard.writeText(pkgCmds[activePkg].cmd).then(function() {
+      document.getElementById('pkg-icon-copy').style.display = 'none';
+      document.getElementById('pkg-icon-check').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('pkg-icon-copy').style.display = 'block';
+        document.getElementById('pkg-icon-check').style.display = 'none';
+      }, 2000);
+    });
+  }
+
+  function show(section, tab, btn) {
+    var preview = document.getElementById(section + '-preview');
+    var code = document.getElementById(section + '-code');
+    var parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(function(b) {
+      b.style.background = 'transparent';
+      b.style.color = '#A0A0A0';
+    });
+    btn.style.background = '#2A2A2A';
+    btn.style.color = '#FFFFFF';
+    if (tab === 'preview') {
+      preview.classList.remove('hidden');
+      code.classList.add('hidden');
+    } else {
+      preview.classList.add('hidden');
+      code.classList.remove('hidden');
+    }
+  }
+
+  function copySection(section, btn) {
+    var codeEl = document.getElementById(section + '-code');
+    if (!codeEl) return;
+    navigator.clipboard.writeText(codeEl.innerText.trim()).then(function() {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="#22C55E"><path d="M13 24L4 15l1.41-1.41L13 21.17l13.59-13.58L28 9z"/></svg>';
+      setTimeout(function() { btn.innerHTML = orig; }, 2000);
+    });
+  }
+
+  window.setPkg = setPkg;
+  window.copyPkg = copyPkg;
+  window.show = show;
+  window.copySection = copySection;
+</script>
