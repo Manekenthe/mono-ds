@@ -7,7 +7,7 @@ const name = slug ? slug.charAt(0).toUpperCase() + slug.slice(1) : '';
 export function getStaticPaths() {
   const components = [
     'card',
-    'checkbox','dialog','input','select','slider','switch',
+    'dialog','input','select','slider','switch',
     'tabs','toast','tooltip'
   ];
   return components.map((s) => ({ params: { slug: s } }));
